@@ -9,7 +9,7 @@ import * as env from "./environment";
 
 // pages
 import { AuthorizedPage } from "./pages/authorized.page";
-import { LoginPage } from "./pages/login.page";
+import { LoginPage } from "./pages/Login/login.page";
 
 // route types
 import { AuthenticatedRoute } from "./routes/authenticated.route";
