@@ -1,21 +1,20 @@
-import * as React from 'react';
-import { observable, action } from 'mobx';
-import { inject, Observer } from 'mobx-react';
+import { action, observable } from "mobx";
+import { inject, Observer } from "mobx-react";
+import * as React from "react";
+import { INPUTG } from "../components/input.component";
+import { i18n } from "../locales/i18n";
+import { AuthenticationState, SessionStore } from "../stores/session.store";
+import { translate } from "../utils/translate";
 
-import { Input } from '../components/input.component';
-import { SessionStore, AuthenticationState } from '../store/session.store';
-import { translate } from '../utils/translate';
-import { i18n } from '../locales/i18n';
+const t = translate(["login"]);
 
-const t = translate(['login']);
-
-interface LoginPageProps {
+interface ILoginPageProps {
   sessionStore: SessionStore;
 }
 
-@inject('sessionStore')
-export class LoginPage extends React.Component<LoginPageProps> {
-  @observable localState = { username: '', password: '' };
+@inject("sessionStore")
+export class LoginPage extends React.Component<ILoginPageProps> {
+  @observable localState = { username: "", password: ""};
 
   @action.bound
   async onFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -36,7 +35,7 @@ export class LoginPage extends React.Component<LoginPageProps> {
 
   onLanguageChange = (event: React.FormEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(event.currentTarget.value, () => window.location.reload());
-  };
+  }
 
   render() {
     return (
@@ -49,16 +48,16 @@ export class LoginPage extends React.Component<LoginPageProps> {
         <Observer>
           {() => (
             <label>
-              {t('username')}
-              <Input value={this.localState.username} onChange={this.onUsernameChange} />
+              {t("username")}
+              <INPUTG value={this.localState.username} onChange={this.onUsernameChange} />
             </label>
           )}
         </Observer>
         <Observer>
           {() => (
             <label>
-              {t('password')}
-              <Input
+              {t("password")}
+              <INPUTG
                 type="password"
                 value={this.localState.password}
                 onChange={this.onPasswordChange}
@@ -70,8 +69,8 @@ export class LoginPage extends React.Component<LoginPageProps> {
           {() => (
             <button type="submit">
               {this.props.sessionStore.authenticationState === AuthenticationState.pending
-                ? t('loading')
-                : t('submit')}
+                ? t("loading")
+                : t("submit")}
             </button>
           )}
         </Observer>

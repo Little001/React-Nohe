@@ -1,30 +1,44 @@
-import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
-import './App.css';
-import { IAuthStore } from './stores/authStore';
+// 3rd party dependencies
+import { ThemeProvider } from "glamorous";
+import { observer, Provider } from "mobx-react";
+import * as React from "react";
+import { Router, Switch } from "react-router";
 
-interface AppProps {
-  authStore?: IAuthStore
-}
+// environment
+import * as env from "./environment";
 
-@inject("authStore")
+// pages
+import { AuthorizedPage } from "./pages/authorized.page";
+import { LoginPage } from "./pages/login.page";
+
+// route types
+import { AuthenticatedRoute } from "./routes/authenticated.route";
+import { UnauthenticatedRoute } from "./routes/unauthenticated.route";
+
 @observer
-class App extends Component<AppProps> {
-  render() {
-    return (
-      <div className="App">
-        <div className="header">{this.props.authStore!.getUserStore().name}</div>
-        <div className="header">{this.props.authStore!.getUserStore().role}</div>
-        <button onClick={this.clickHandler}>Login</button>
-        <button onClick={this.clickHandler}>logout</button>
-      </div>
-    );
-  }
-
-  private clickHandler = () => {
-    this.props.authStore!.login();
-  }
-  
+export class App extends React.Component {
+    render() {
+        return (
+            <ThemeProvider theme={env.themeStore.getCurrentTheme()}>
+                <Provider sessionStore={env.sessionStore} themeStore={env.themeStore}>
+                    <Router history={env.history}>
+                        <Switch>
+                            <UnauthenticatedRoute
+                                path="/"
+                                component={LoginPage}
+                                exact={true}
+                                sessionStore={env.sessionStore}
+                            />
+                            <AuthenticatedRoute
+                                path="/auth"
+                                component={AuthorizedPage}
+                                exact={true}
+                                sessionStore={env.sessionStore}
+                            />
+                        </Switch>
+                    </Router>
+                </Provider>
+            </ThemeProvider>
+        );
+    }
 }
-
-export default App;

@@ -1,23 +1,22 @@
-import * as React from 'react';
-import { inject } from 'mobx-react';
+import { inject } from "mobx-react";
+import * as React from "react";
+import { BUTTON } from "../components/button.component";
+import { ThemeOption, ThemeStore } from "../stores/theme.store";
+import { translate } from "../utils/translate";
 
-import { Button } from '../components/button.component';
-import { ThemeStore, ThemeOption } from '../store/theme.store';
-import { translate } from '../utils/translate';
+const t = translate(["auth"]);
 
-const t = translate(['auth']);
-
-interface AuthorizedPageProps {
+interface IAuthorizedPageProps {
   themeStore: ThemeStore;
 }
 
-@inject('themeStore')
-export class AuthorizedPage extends React.Component<AuthorizedPageProps> {
-  changeToDarkTheme = () => {
+@inject("themeStore")
+export class AuthorizedPage extends React.Component<IAuthorizedPageProps> {
+  changeToDarkTheme() {
     this.props.themeStore.changeTheme(ThemeOption.dark);
-  };
+  }
 
   render() {
-    return <Button onClick={this.changeToDarkTheme}>{t('toggleThemeToDark')}</Button>;
+    return <BUTTON onClick={this.changeToDarkTheme}>{t("toggleThemeToDark")}</BUTTON>;
   }
 }

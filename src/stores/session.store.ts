@@ -1,7 +1,7 @@
-import { observable } from 'mobx';
-import { asyncAction } from 'mobx-utils';
-import { SessionAPI } from '../api/session.api';
-import { History } from 'history';
+import { History } from "history";
+import { observable } from "mobx";
+import { asyncAction } from "mobx-utils";
+import { SessionAPI } from "../api/session.api";
 
 export enum AuthenticationState {
   pending,
@@ -38,7 +38,7 @@ export class SessionStore {
       // TODO: save token to localStorage
       // this.localStorage.setItem('token', JSON.stringify(response));
 
-      this.browserHistory.replace('/auth');
+      this.browserHistory.replace("/auth");
       this.authenticationState = AuthenticationState.done;
     } catch (e) {
       this.authenticationState = AuthenticationState.error;

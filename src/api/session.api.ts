@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios';
+import { AxiosInstance } from "axios";
 
 export class SessionAPI {
   http: AxiosInstance;
@@ -9,6 +9,7 @@ export class SessionAPI {
 
   async getToken(username: string, password: string) {
     // FIXME: just for example
-    return await this.http.get('/posts');
+
+    return this.http.get("/posts");
   }
 }

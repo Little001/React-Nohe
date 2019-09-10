@@ -1,20 +1,20 @@
-import { observable, action } from 'mobx';
+import { action, observable } from "mobx";
 
 export enum ThemeOption {
   dark,
   light
 }
 
-export interface Theme {
+export interface ITheme {
   backgroundColor: string;
 }
 
-export const darkTheme: Theme = {
-  backgroundColor: 'black'
+export const darkTheme: ITheme = {
+  backgroundColor: "black"
 };
 
-export const lightTheme: Theme = {
-  backgroundColor: '#ccc'
+export const lightTheme: ITheme = {
+  backgroundColor: "#ccc"
 };
 
 export class ThemeStore {

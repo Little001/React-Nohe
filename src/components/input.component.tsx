@@ -1,13 +1,13 @@
-import glamorous from 'glamorous';
-import { Theme } from '../store/theme.store';
+import glamorous from "glamorous";
+import { ITheme } from "../stores/theme.store";
 
-interface InputProps {
-  theme: Theme;
+interface IInputProps {
+  theme: ITheme;
 }
 
-export const Input = glamorous.input<InputProps>(
+export const INPUTG = glamorous.input<IInputProps>(
   {
-    border: 'none'
+    border: "none"
   },
   ({ theme }) => ({
     borderColor: theme.backgroundColor

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { observer } from 'mobx-react';
-import { Route, Redirect, RouteComponentProps } from 'react-router';
-import { SessionStore } from '../store/session.store';
+import { observer } from "mobx-react";
+import * as React from "react";
+import { SessionStore } from "../stores/session.store";
+import { Redirect, Route, RouteComponentProps } from "react-router";
 
-interface AuthenticatedRouteProps {
+interface IAuthenticatedRouteProps {
   path: string;
   component:
     | React.StatelessComponent<{}>
@@ -14,7 +14,7 @@ interface AuthenticatedRouteProps {
 }
 
 @observer
-export class AuthenticatedRoute extends React.Component<AuthenticatedRouteProps> {
+export class AuthenticatedRoute extends React.Component<IAuthenticatedRouteProps> {
   render() {
     if (this.props.sessionStore.isLogged()) {
       return (

@@ -1,15 +1,17 @@
-import axios from 'axios';
-import { useStrict } from 'mobx';
-import { SessionAPI } from './api/session.api';
-import { SessionStore } from './store/session.store';
-import { ThemeStore } from './store/theme.store';
-import { createBrowserHistory } from 'history';
+import axios from "axios";
+import { createBrowserHistory } from "history";
+import { configure } from "mobx";
+import { SessionAPI } from "./api/session.api";
+import { SessionStore } from "./stores/session.store";
+import { ThemeStore } from "./stores/theme.store";
 
 // initialize mobx in FLUX mode
-useStrict(true);
+configure({
+    enforceActions: true
+});
 
 // initialize http client dependency
-const http = axios.create({ baseURL: 'https://jsonplaceholder.typicode.com' });
+const http = axios.create({ baseURL: "https://jsonplaceholder.typicode.com" });
 
 // initialize browserHistory dependency
 const history = createBrowserHistory();

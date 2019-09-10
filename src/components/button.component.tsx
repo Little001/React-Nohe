@@ -1,13 +1,13 @@
-import glamorous from 'glamorous';
-import { Theme } from '../store/theme.store';
+import glamorous from "glamorous";
+import { ITheme } from "../stores/theme.store";
 
-interface ButtonProps {
-  theme: Theme;
+interface IButtonProps {
+  theme: ITheme;
 }
 
-export const Button = glamorous.button<ButtonProps>(
+export const BUTTON = glamorous.button<IButtonProps>(
   {
-    textTransform: 'uppercase'
+    textTransform: "uppercase"
   },
   ({ theme }) => ({
     color: theme.backgroundColor
