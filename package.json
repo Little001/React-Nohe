@@ -38,6 +38,8 @@
   "browserslist": [],
   "devDependencies": {
     "react-dev-utils": "^9.0.1",
+    "tslint": "^5.20.0",
+    "tslint-react": "^4.0.0",
     "@types/jest": "^24.0.18"
   }
 }

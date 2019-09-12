@@ -18,7 +18,6 @@ class LoginController {
         this.model.password = password;
     }
 
-
     public getModel(): LoginModel {
         return this.model;
     }
