@@ -1,6 +1,5 @@
 import { inject } from "mobx-react";
 import * as React from "react";
-import { BUTTON } from "../components/button.component";
 import { ThemeOption, ThemeStore } from "../stores/theme.store";
 import { translate } from "../utils/translate";
 
@@ -17,6 +16,6 @@ export class AuthorizedPage extends React.Component<IAuthorizedPageProps> {
   }
 
   render() {
-    return <BUTTON onClick={this.changeToDarkTheme}>{t("toggleThemeToDark")}</BUTTON>;
+    return <input type="submit" onClick={this.changeToDarkTheme}>{t("toggleThemeToDark")}</input>;
   }
 }

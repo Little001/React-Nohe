@@ -3,16 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@types/i18next": "^8.4.2",
-    "@types/i18next-browser-languagedetector": "^2.0.1",
-    "@types/jest": "^24.0.18",
-    "@types/node": "12.0.8",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "16.9.0",
-    "@types/react-router": "^4.0.20",
     "axios": "^0.17.1",
-    "glamor": "^2.20.40",
-    "glamorous": "^4.11.2",
     "i18next": "^10.2.1",
     "i18next-browser-languagedetector": "^2.1.0",
     "mobx": "^5.13.0",
@@ -32,14 +23,14 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": [],
   "devDependencies": {
-    "react-dev-utils": "^9.0.1",
-    "tslint": "^5.20.0",
-    "tslint-react": "^4.0.0",
-    "@types/jest": "^24.0.18"
+    "@types/i18next": "^8.4.2",
+    "@types/i18next-browser-languagedetector": "^2.0.1",
+    "@types/jest": "^24.0.18",
+    "@types/node": "12.0.8",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "16.9.0",
+    "@types/react-router": "^4.0.20"
   }
 }

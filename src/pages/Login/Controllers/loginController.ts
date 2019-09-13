@@ -1,6 +1,7 @@
 import LoginModel from "../Models/loginModel";
 import { action } from "mobx";
 
+
 class LoginController {
     private model: LoginModel;
 

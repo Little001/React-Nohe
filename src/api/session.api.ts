@@ -4,12 +4,12 @@ export class SessionAPI {
   http: AxiosInstance;
 
   constructor(http: AxiosInstance) {
-    this.http = http;
+      this.http = http;
   }
 
   async getToken(username: string, password: string) {
-    // FIXME: just for example
+      // FIXME: just for example
 
-    return this.http.get("/posts");
+      return this.http.get("/posts");
   }
 }

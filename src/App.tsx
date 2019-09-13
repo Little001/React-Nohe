@@ -1,5 +1,4 @@
 // 3rd party dependencies
-import { ThemeProvider } from "glamorous";
 import { observer, Provider } from "mobx-react";
 import * as React from "react";
 import { Router, Switch } from "react-router";
@@ -19,26 +18,24 @@ import { UnauthenticatedRoute } from "./routes/unauthenticated.route";
 export class App extends React.Component {
     render() {
         return (
-            <ThemeProvider theme={env.themeStore.getCurrentTheme()}>
-                <Provider sessionStore={env.sessionStore} themeStore={env.themeStore}>
-                    <Router history={env.history}>
-                        <Switch>
-                            <UnauthenticatedRoute
-                                path="/"
-                                component={LoginPage}
-                                exact={true}
-                                sessionStore={env.sessionStore}
-                            />
-                            <AuthenticatedRoute
-                                path="/auth"
-                                component={AuthorizedPage}
-                                exact={true}
-                                sessionStore={env.sessionStore}
-                            />
-                        </Switch>
-                    </Router>
-                </Provider>
-            </ThemeProvider>
+            <Provider sessionStore={env.sessionStore} themeStore={env.themeStore}>
+                <Router history={env.history}>
+                    <Switch>
+                        <UnauthenticatedRoute
+                            path="/"
+                            component={LoginPage}
+                            exact={true}
+                            sessionStore={env.sessionStore}
+                        />
+                        <AuthenticatedRoute
+                            path="/auth"
+                            component={AuthorizedPage}
+                            exact={true}
+                            sessionStore={env.sessionStore}
+                        />
+                    </Switch>
+                </Router>
+            </Provider>
         );
     }
 }

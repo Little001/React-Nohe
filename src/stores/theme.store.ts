@@ -7,14 +7,15 @@ export enum ThemeOption {
 
 export interface ITheme {
   backgroundColor: string;
+
 }
 
 export const darkTheme: ITheme = {
-  backgroundColor: "black"
+    backgroundColor: "black"
 };
 
 export const lightTheme: ITheme = {
-  backgroundColor: "#ccc"
+    backgroundColor: "#ccc"
 };
 
 export class ThemeStore {
@@ -23,7 +24,7 @@ export class ThemeStore {
 
   // inject dependencies
   constructor(public localStorage: Storage) {
-    // TODO: read current theme from storage
+      // TODO: read current theme from storage
   }
 
   /**
@@ -31,19 +32,19 @@ export class ThemeStore {
    */
   @action
   changeTheme(theme: ThemeOption) {
-    this.currentTheme = theme;
+      this.currentTheme = theme;
 
-    // TODO: same current theme to storage
+      // TODO: same current theme to storage
   }
 
   getCurrentTheme() {
-    switch (this.currentTheme) {
-      case ThemeOption.dark:
-        return darkTheme;
-      case ThemeOption.light:
-        return lightTheme;
-      default:
-        return lightTheme;
-    }
+      switch (this.currentTheme) {
+      	case ThemeOption.dark:
+        	return darkTheme;
+      	case ThemeOption.light:
+        	return lightTheme;
+      	default:
+        	return lightTheme;
+      }
   }
 }

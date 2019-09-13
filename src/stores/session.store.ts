@@ -21,32 +21,32 @@ export class SessionStore {
     public sessionApi: SessionAPI,
     public browserHistory: History,
     public localStorage: Storage
-  ) {}
+  ) {/*no*/}
 
   /**
    * Action that authenticates user
    */
   @asyncAction
   *login(username: string, password: string) {
-    this.authenticationState = AuthenticationState.pending;
+      this.authenticationState = AuthenticationState.pending;
 
-    try {
-      yield this.sessionApi.getToken(username, password);
+      try {
+          yield this.sessionApi.getToken(username, password);
 
-      this.isLoggedIn = true;
+          this.isLoggedIn = true;
 
-      // TODO: save token to localStorage
-      // this.localStorage.setItem('token', JSON.stringify(response));
+          // TODO: save token to localStorage
+          // this.localStorage.setItem('token', JSON.stringify(response));
 
-      this.browserHistory.replace("/auth");
-      this.authenticationState = AuthenticationState.done;
-    } catch (e) {
-      this.authenticationState = AuthenticationState.error;
-    }
+          this.browserHistory.replace("/auth");
+          this.authenticationState = AuthenticationState.done;
+      } catch (e) {
+          this.authenticationState = AuthenticationState.error;
+      }
   }
 
   isLogged() {
-    // TODO: read token from localStorage
-    return this.isLoggedIn;
+      // TODO: read token from localStorage
+      return this.isLoggedIn;
   }
 }
