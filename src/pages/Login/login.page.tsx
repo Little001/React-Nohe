@@ -25,22 +25,22 @@ export class LoginPage extends React.Component<ILoginPageProps> {
 
     render() {
         return (
-        <form onSubmit={this.onFormSubmit}>
-            {/* TODO: add LocalizationStore */}
-            <label>
-                {"username"}
-                <input value={controller.getModel().username} onChange={this.onUsernameChange} />
-            </label>
-            <label>
-                {"password"}
-                <input value={controller.getModel().password} onChange={this.onPasswordChange} />
-            </label>
-            <button type="submit">
-                {this.props.sessionStore.authenticationState === AuthenticationState.pending
-                    ? "loading"
-                    : "submit"}
-            </button>
-        </form>
+            <form onSubmit={this.onFormSubmit}>
+                {/* TODO: add LocalizationStore */}
+                <label>
+                    {"username"}
+                    <input value={controller.getModel().username} onChange={this.onUsernameChange} />
+                </label>
+                <label>
+                    {"password"}
+                    <input value={controller.getModel().password} onChange={this.onPasswordChange} />
+                </label>
+                <button type="submit">
+                    {this.props.sessionStore.authenticationState === AuthenticationState.pending
+                        ? "loading"
+                        : "submit"}
+                </button>
+            </form>
         );
     }
 }
