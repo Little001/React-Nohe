@@ -5,7 +5,7 @@ export default class LoginModel {
     @observable public password: string;
 
     constructor() {
-        this.username = "";
-        this.password = "";
+      this.username = "";
+      this.password = "";
     }
 }

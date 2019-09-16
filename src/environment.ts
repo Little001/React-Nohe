@@ -7,7 +7,7 @@ import { ThemeStore } from "./stores/theme.store";
 
 // initialize mobx in FLUX mode
 configure({
-    enforceActions: true
+    enforceActions: true,
 });
 
 // initialize http client dependency

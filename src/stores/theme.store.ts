@@ -39,12 +39,12 @@ export class ThemeStore {
 
   getCurrentTheme() {
       switch (this.currentTheme) {
-      	case ThemeOption.dark:
-        	return darkTheme;
-      	case ThemeOption.light:
-        	return lightTheme;
-      	default:
-        	return lightTheme;
+          case ThemeOption.dark:
+              return darkTheme;
+          case ThemeOption.light:
+              return lightTheme;
+          default:
+              return lightTheme;
       }
   }
 }

@@ -1,0 +1,10 @@
+{
+  "extends": [
+      "react-app"
+    ],
+    "rules": {
+      "dot-location": "off",
+      "quotes": ["error", "double"],
+      "indent": ["error", 4]
+    }
+}
