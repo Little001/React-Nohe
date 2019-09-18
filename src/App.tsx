@@ -7,7 +7,7 @@ import { Router, Switch } from "react-router";
 import * as env from "./environment";
 
 // pages
-import { LoginPage } from "./pages/Login/login.page";
+import { LoginPage } from "./pages/Login/View/login.page";
 
 @observer
 export class App extends React.Component {

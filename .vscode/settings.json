@@ -1,4 +1,10 @@
 {
     "git.ignoreLimitWarning": true,
     "editor.tabSize": 4,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      { "language": "typescript", "autoFix": true },
+      { "language": "typescriptreact", "autoFix": true }
+    ]
 }

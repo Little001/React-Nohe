@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { AuthenticationState, SessionStore } from "../../stores/session.store";
-import { loginController as controller } from "./Controllers/loginController";
+import { AuthenticationState, SessionStore } from "../../../stores/session.store";
+import { loginController as controller } from "../Controllers/loginController";
 
 interface ILoginPageProps {
     sessionStore: SessionStore;
