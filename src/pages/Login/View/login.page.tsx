@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { AuthenticationState, SessionStore } from "../../../stores/session.store";
+import { SessionStore } from "../../../stores/session.store";
 import { loginController as controller } from "../Controllers/loginController";
 
 interface ILoginPageProps {
@@ -35,11 +35,7 @@ export class LoginPage extends React.Component<ILoginPageProps> {
                     {"password"}
                     <input value={controller.getModel().password} onChange={this.onPasswordChange} />
                 </label>
-                <button type="submit">
-                    {this.props.sessionStore.authenticationState === AuthenticationState.pending
-                        ? "loading"
-                        : "submit"}
-                </button>
+                <button type="submit">submit</button>
             </form>
         );
     }

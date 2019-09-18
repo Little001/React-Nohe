@@ -3,7 +3,6 @@ import { createBrowserHistory } from "history";
 import { configure } from "mobx";
 import { SessionAPI } from "./api/session.api";
 import { SessionStore } from "./stores/session.store";
-import { ThemeStore } from "./stores/theme.store";
 
 // initialize mobx in FLUX mode
 configure({
@@ -21,7 +20,6 @@ const sessionApi = new SessionAPI(http);
 
 // initialzie stores with dependencies
 const sessionStore = new SessionStore(sessionApi, history, window.localStorage);
-const themeStore = new ThemeStore(window.localStorage);
 
 // expose helpers
 export { http, history };
@@ -30,4 +28,4 @@ export { http, history };
 export { sessionApi };
 
 // expose stores
-export { sessionStore, themeStore };
+export { sessionStore };
