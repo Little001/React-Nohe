@@ -2,13 +2,41 @@ import { loginController } from "../../../pages/Login/Controllers/loginControlle
 
 describe("Login Controller", () => {
 
-    it("Set username", () => {
+    it("SET / GET Username", () => {
         loginController.setUserName("Merynek");
-        expect(loginController.getModel().username).toBe("Merynek");
+        expect(loginController.getUserName()).toBe("Merynek");
     });
 
-    it("Set password", () => {
+    it("SET / GET Password", () => {
         loginController.setPassword("Password");
-        expect(loginController.getModel().password).toBe("Password");
+        expect(loginController.getPassword()).toBe("Password");
+    });
+
+    it("Login store", () => {
+        loginController.setUserName("Username");
+        loginController.setPassword("Password");
+
+        expect(loginController.getStore()).toEqual({
+            username: "Username",
+            password: "Password"
+        })
+    });
+
+    it("Is valid", () => {
+        loginController.setUserName("");
+        loginController.setPassword("");
+        expect(loginController.isValid()).toBeFalsy();
+
+        loginController.setUserName("Username");
+        loginController.setPassword("");
+        expect(loginController.isValid()).toBeFalsy();
+
+        loginController.setUserName("");
+        loginController.setPassword("Password");
+        expect(loginController.isValid()).toBeFalsy();
+
+        loginController.setUserName("Username");
+        loginController.setPassword("Password");
+        expect(loginController.isValid()).toBeTruthy();
     });
 });

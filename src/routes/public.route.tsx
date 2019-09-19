@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { Route, Redirect } from "react-router";
 import { SessionStore } from "../stores/session.store";
 
-interface AuthenticatedRouteProps {
+interface IPublicRouteProps {
   path: string;
   component: React.ComponentType<any>;
   exact: boolean;
@@ -11,14 +11,14 @@ interface AuthenticatedRouteProps {
 }
 
 @observer
-export class AuthenticatedRoute extends React.Component<AuthenticatedRouteProps> {
+export class PublicRoute extends React.Component<IPublicRouteProps> {
     render() {
-        if (this.props.sessionStore.isLogged()) {
+        if (!this.props.sessionStore.isLogged()) {
             return (
                 <Route path={this.props.path} component={this.props.component} exact={this.props.exact} />
             );
         }
 
-        return <Redirect to="/login" />;
+        return <Redirect to="/home" />;
     }
 }

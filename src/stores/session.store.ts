@@ -1,6 +1,7 @@
 import { History } from "history";
 import { observable } from "mobx";
 import { SessionAPI } from "../api/session.api";
+import LoginStore from "../pages/Login/Stores/loginStore";
 
 export class SessionStore {
     // osbervable private data
@@ -9,8 +10,8 @@ export class SessionStore {
     // inject dependencies
     constructor(public sessionApi: SessionAPI, public browserHistory: History, public localStorage: Storage) {}
 
-    public login(username: string, password: string) {
-        this.sessionApi.getToken(username, password);
+    public login(loginStore: LoginStore) {
+        this.sessionApi.getToken(loginStore.username, loginStore.password);
 
         this.isLoggedIn = true;
 

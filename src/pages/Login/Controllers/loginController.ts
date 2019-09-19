@@ -1,25 +1,34 @@
-import LoginModel from "../Models/loginModel";
-import { action } from "mobx";
+import LoginStore from "../Stores/loginStore";
 
 class LoginController {
-    private model: LoginModel;
+    private store: LoginStore;
 
     constructor() {
-        this.model = new LoginModel();
+        this.store = new LoginStore();
     }
 
-    @action
     public setUserName(username: string): void {
-        this.model.username = username;
+        this.store.username = username;
     }
 
-    @action
+    public getUserName(): string {
+        return this.store.username;
+    }
+
     public setPassword(password: string): void {
-        this.model.password = password;
+        this.store.password = password;
     }
 
-    public getModel(): LoginModel {
-        return this.model;
+    public getPassword(): string {
+        return this.store.password;
+    }
+
+    public getStore(): LoginStore {
+        return this.store;
+    }
+
+    public isValid(): boolean {
+        return Boolean(this.getUserName()) && Boolean(this.getPassword());
     }
 }
 

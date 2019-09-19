@@ -6,7 +6,7 @@ import { SessionStore } from "./stores/session.store";
 
 // initialize mobx in FLUX mode
 configure({
-    enforceActions: true,
+    enforceActions: "never",
 });
 
 // initialize http client dependency

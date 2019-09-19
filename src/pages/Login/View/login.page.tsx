@@ -10,16 +10,16 @@ interface ILoginPageProps {
 @inject("sessionStore")
 @observer
 export class LoginPage extends React.Component<ILoginPageProps> {
-    private onFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        this.props.sessionStore.login(controller.getModel().username, controller.getModel().password);
+        this.props.sessionStore.login(controller.getStore());
     }
 
-    private onUsernameChange(event: React.FormEvent<HTMLInputElement>) {
+    onUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {
         controller.setUserName(event.currentTarget.value);
     }
 
-    private onPasswordChange(event: React.FormEvent<HTMLInputElement>) {
+    onPasswordChange = (event: React.FormEvent<HTMLInputElement>) => {
         controller.setPassword(event.currentTarget.value);
     }
 
@@ -29,11 +29,11 @@ export class LoginPage extends React.Component<ILoginPageProps> {
                 {/* TODO: add LocalizationStore */}
                 <label>
                     {"username"}
-                    <input value={controller.getModel().username} onChange={this.onUsernameChange} />
+                    <input value={controller.getUserName()} onChange={this.onUsernameChange} />
                 </label>
                 <label>
                     {"password"}
-                    <input value={controller.getModel().password} onChange={this.onPasswordChange} />
+                    <input value={controller.getPassword()} onChange={this.onPasswordChange} />
                 </label>
                 <button type="submit">submit</button>
             </form>

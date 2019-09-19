@@ -1,6 +1,6 @@
 import { observable } from "mobx";
 
-export default class LoginModel {
+export default class LoginStore {
     @observable public username: string;
     @observable public password: string;
 
