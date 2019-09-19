@@ -1,15 +1,26 @@
-import { AxiosInstance } from "axios";
+import Api from "./api";
 
 export class SessionAPI {
-  private http: AxiosInstance;
+    private api: Api;
 
-  constructor(http: AxiosInstance) {
-      this.http = http;
-  }
+    constructor(api: Api) {
+        this.api = api;
+    }
 
-  public async getToken(username: string, password: string) {
-      // FIXME: just for example
+    public async getToken(username: string, password: string) {
+        return this.api.get("token", {
+            field: "token",
+            params: {
+                username: username,
+                password: password
+            }
+        });
+    }
 
-      return this.http.get("/posts");
-  }
+    public async post(username: string, password: string) {
+        return this.api.post("token", {
+            username: username,
+            password: password
+        });
+    }
 }

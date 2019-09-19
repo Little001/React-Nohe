@@ -1,8 +1,11 @@
-import axios from "axios";
 import { createBrowserHistory } from "history";
 import { configure } from "mobx";
+import localApi from "./api/localApi";
+import remoteApi from "./api/remoteApi";
 import { SessionAPI } from "./api/session.api";
-import { SessionStore } from "./stores/session.store";
+import { SessionStore } from "./globalStores/session.store";
+
+const isProduction = false;
 
 // initialize mobx in FLUX mode
 configure({
@@ -10,19 +13,19 @@ configure({
 });
 
 // initialize http client dependency
-const http = axios.create({ baseURL: "https://jsonplaceholder.typicode.com" });
+const api = isProduction ? new remoteApi() : new localApi();
 
 // initialize browserHistory dependency
 const history = createBrowserHistory();
 
 // initialize services with dependencies
-const sessionApi = new SessionAPI(http);
+const sessionApi = new SessionAPI(api);
 
 // initialzie stores with dependencies
 const sessionStore = new SessionStore(sessionApi, history, window.localStorage);
 
 // expose helpers
-export { http, history };
+export { api, history };
 
 // expose services
 export { sessionApi };

@@ -18,6 +18,7 @@ export class App extends React.Component {
             <Provider sessionStore={env.sessionStore} >
                 <Router history={env.history}>
                     <Switch>
+                        <PublicRoute path="/" component={LoginPage} exact={true} sessionStore={env.sessionStore} />
                         <PublicRoute path="/login" component={LoginPage} exact={true} sessionStore={env.sessionStore} />
                         <PrivateRoute path="/home" component={LoginPage} exact={true} sessionStore={env.sessionStore} />
                     </Switch>

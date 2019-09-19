@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { Route, Redirect } from "react-router";
-import { SessionStore } from "../stores/session.store";
+import { SessionStore } from "../globalStores/session.store";
 
 interface IPublicRouteProps {
   path: string;
