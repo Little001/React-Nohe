@@ -4,6 +4,7 @@ import { SessionStore } from "../../../globalStores/session.store";
 import { loginController as controller } from "../Controllers/login.controller";
 import { Input } from "../../../components/input/input.component";
 import { Button } from "../../../components/button/button.component";
+import { translate } from "../../../locales/i18n";
 
 interface ILoginPageProps {
     sessionStore: SessionStore;
@@ -28,7 +29,7 @@ export class LoginPage extends React.Component<ILoginPageProps> {
     render() {
         return (
             <div>
-                {/* TODO: add LocalizationStore */}
+                {translate("loading")}
                 <label>
                     {"username"}
                     <Input value={controller.getUserName()} onChange={this.onUsernameChange} />
