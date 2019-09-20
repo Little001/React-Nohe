@@ -1,6 +1,7 @@
 import Api from "./api";
+import RegistrationStore from "../pages/Registration/Stores/registration.store";
 
-export class SessionAPI {
+export class UserAPI {
     private api: Api;
 
     constructor(api: Api) {
@@ -17,10 +18,7 @@ export class SessionAPI {
         });
     }
 
-    public async post(username: string, password: string) {
-        return this.api.post("token", {
-            username: username,
-            password: password
-        });
+    public async registration(registrationStore: RegistrationStore) {
+        return this.api.post("registration", registrationStore);
     }
 }

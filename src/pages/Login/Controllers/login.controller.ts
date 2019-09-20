@@ -1,4 +1,4 @@
-import LoginStore from "../Stores/loginStore";
+import LoginStore from "../Stores/login.store";
 
 class LoginController {
     private store: LoginStore;

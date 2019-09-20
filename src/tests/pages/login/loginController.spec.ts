@@ -1,4 +1,4 @@
-import { loginController } from "../../../pages/Login/Controllers/loginController";
+import { loginController } from "../../../pages/Login/Controllers/login.controller";
 
 describe("Login Controller", () => {
 

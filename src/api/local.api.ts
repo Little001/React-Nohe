@@ -7,10 +7,13 @@ export default class LocalApi extends Api {
         return new Promise((resolve, reject) => {
             let json = this.getJson(url);
 
-            if (params.field) {
-                resolve(json[params.field]);
+            if(this.checkLogin(url, params)) {
+                if (params.field) {
+                    resolve(json[params.field]);
+                }
+                resolve(json);
             }
-            resolve(json);
+            reject();
         });
     }
 
@@ -25,5 +28,18 @@ export default class LocalApi extends Api {
         case "token": return token;
         default: throw new Error("This URL is not recognized.");
         }
+    }
+
+    private checkLogin(url: string, params: IGetParams) {
+        if (url === "login") {
+            if (params.params) {
+                if (params.params["username"] === "merynek" && params.params["password"] === "pass") {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
     }
 }
