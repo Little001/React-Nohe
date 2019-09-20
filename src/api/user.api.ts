@@ -1,5 +1,6 @@
-import Api from "./api";
+import Api from "./base/api";
 import RegistrationStore from "../pages/Registration/Stores/registration.store";
+import LoginStore from "../pages/Login/Stores/login.store";
 
 export class UserAPI {
     private api: Api;
@@ -8,13 +9,10 @@ export class UserAPI {
         this.api = api;
     }
 
-    public async getToken(username: string, password: string) {
+    public async getToken(loginStore: LoginStore) {
         return this.api.get("token", {
             field: "token",
-            params: {
-                username: username,
-                password: password
-            }
+            params: loginStore
         });
     }
 

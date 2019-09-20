@@ -6,13 +6,12 @@ import LoginStore from "../pages/Login/Stores/login.store";
 export class SessionStore {
     @observable private isLoggedIn: boolean = false;
 
-    constructor(public sessionApi: UserAPI, public browserHistory: History, public localStorage: Storage) {}
+    constructor(public userApi: UserAPI, public browserHistory: History, public localStorage: Storage) {}
 
     public login(loginStore: LoginStore) {
-        this.sessionApi.getToken(loginStore.username, loginStore.password).then((response) => {
-            debugger;
+        this.userApi.getToken(loginStore).then((token) => {
             this.isLoggedIn = true;
-            this.localStorage.setItem("token", JSON.stringify(response.data));
+            this.localStorage.setItem("token", JSON.stringify(token));
             this.browserHistory.replace("/home");
         }).catch((error) => {
             //error

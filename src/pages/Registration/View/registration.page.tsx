@@ -3,6 +3,7 @@ import * as React from "react";
 import RegistrationController from "../Controllers/registration.controller";
 import { UserAPI } from "../../../api/user.api";
 import { Input } from "../../../components/input/input.component";
+import { Button } from "../../../components/button/button.component";
 
 interface IRegistrationPageProps {
     userApi: UserAPI
@@ -17,7 +18,7 @@ export class RegistrationPage extends React.Component<IRegistrationPageProps> {
         this.controller = new RegistrationController(this.props.userApi);
     }
 
-    onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    handleClick = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         this.controller.registration();
     }
@@ -44,7 +45,7 @@ export class RegistrationPage extends React.Component<IRegistrationPageProps> {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
+            <div>
                 {/* TODO: add LocalizationStore */}
                 <label>
                     {"email"}
@@ -62,8 +63,8 @@ export class RegistrationPage extends React.Component<IRegistrationPageProps> {
                     {"retypePassword"}
                     <Input type="password" value={this.controller.getRetypePassword()} name="retypePassword" onChange={this.handleChange} />
                 </label>
-                <button type="submit">Registration</button>
-            </form>
+                <Button onClick={this.handleClick} text="Registration" />
+            </div>
         );
     }
 }

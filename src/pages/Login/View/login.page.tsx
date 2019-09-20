@@ -2,6 +2,8 @@ import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { SessionStore } from "../../../globalStores/session.store";
 import { loginController as controller } from "../Controllers/login.controller";
+import { Input } from "../../../components/input/input.component";
+import { Button } from "../../../components/button/button.component";
 
 interface ILoginPageProps {
     sessionStore: SessionStore;
@@ -10,7 +12,7 @@ interface ILoginPageProps {
 @inject("sessionStore")
 @observer
 export class LoginPage extends React.Component<ILoginPageProps> {
-    onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    onFormSubmit = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         this.props.sessionStore.login(controller.getStore());
     }
@@ -25,18 +27,18 @@ export class LoginPage extends React.Component<ILoginPageProps> {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
+            <div>
                 {/* TODO: add LocalizationStore */}
                 <label>
                     {"username"}
-                    <input value={controller.getUserName()} onChange={this.onUsernameChange} />
+                    <Input value={controller.getUserName()} onChange={this.onUsernameChange} />
                 </label>
                 <label>
                     {"password"}
-                    <input value={controller.getPassword()} onChange={this.onPasswordChange} />
+                    <Input value={controller.getPassword()} onChange={this.onPasswordChange} />
                 </label>
-                <button type="submit">submit</button>
-            </form>
+                <Button text="Submit" onClick={this.onFormSubmit}/>
+            </div>
         );
     }
 }

@@ -1,7 +1,7 @@
 import { createBrowserHistory } from "history";
 import { configure } from "mobx";
-import localApi from "./api/local.api";
-import remoteApi from "./api/remote.api";
+import localApi from "./api/base/local.api";
+import remoteApi from "./api/base/remote.api";
 import { UserAPI } from "./api/user.api";
 import { SessionStore } from "./globalStores/session.store";
 

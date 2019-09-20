@@ -1,5 +1,5 @@
 import Api, { IGetParams } from "./api";
-import token from "../tests/sources/token.json"
+import token from "../../tests/sources/token.json"
 
 export default class LocalApi extends Api {
 

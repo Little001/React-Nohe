@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "../../../node_modules/axios";
 import Api, { IGetParams } from "./api";
 
 export default class RemoteApi extends Api {
