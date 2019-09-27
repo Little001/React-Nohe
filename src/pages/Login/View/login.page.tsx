@@ -4,7 +4,7 @@ import { SessionStore } from "../../../globalStores/session.store";
 import { loginController as controller } from "../Controllers/login.controller";
 import { Input } from "../../../components/input/input.component";
 import { Button } from "../../../components/button/button.component";
-import { translate } from "../../../locales/i18n";
+import { withTranslation, WithTranslation } from "react-i18next";
 
 interface ILoginPageProps {
     sessionStore: SessionStore;
@@ -12,7 +12,7 @@ interface ILoginPageProps {
 
 @inject("sessionStore")
 @observer
-export class LoginPage extends React.Component<ILoginPageProps> {
+class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
     onFormSubmit = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         this.props.sessionStore.login(controller.getStore());
@@ -27,9 +27,11 @@ export class LoginPage extends React.Component<ILoginPageProps> {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <div>
-                {translate("loading")}
+                {t("login")}
                 <label>
                     {"username"}
                     <Input value={controller.getUserName()} onChange={this.onUsernameChange} />
@@ -43,3 +45,5 @@ export class LoginPage extends React.Component<ILoginPageProps> {
         );
     }
 }
+
+export default withTranslation()(LoginPage);
