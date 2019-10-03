@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "../../../node_modules/axios";
 import Api, { IGetParams } from "./api";
 
 export default class RemoteApi extends Api {
-    private http: AxiosInstance
+    private http: AxiosInstance;
 
     constructor() {
         super();
