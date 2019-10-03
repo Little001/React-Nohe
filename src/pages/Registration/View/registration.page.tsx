@@ -1,22 +1,12 @@
 import { observer } from "mobx-react";
 import * as React from "react";
 import RegistrationController from "../Controllers/registration.controller";
-import { UserAPI } from "../../../api/user.api";
 import { Input } from "../../../components/input/input.component";
 import { Button } from "../../../components/button/button.component";
 
-interface IRegistrationPageProps {
-    userApi: UserAPI
-}
-
 @observer
-export class RegistrationPage extends React.Component<IRegistrationPageProps> {
-    private controller: RegistrationController;
-
-    constructor(props: IRegistrationPageProps) {
-        super(props);
-        this.controller = new RegistrationController(this.props.userApi);
-    }
+export class RegistrationPage extends React.Component {
+    private controller = new RegistrationController();
 
     handleClick = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();

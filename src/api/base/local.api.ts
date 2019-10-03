@@ -1,45 +1,28 @@
 import Api, { IGetParams } from "./api";
-import token from "../../tests/sources/token.json"
+import axios, { AxiosInstance } from "../../../node_modules/axios";
 
 export default class LocalApi extends Api {
+    private http: AxiosInstance;
+
+
+    constructor() {
+        super();
+        this.http = axios.create({ baseURL: "http://localhost:3004/" });
+    }
 
     public get(url: string, params: IGetParams): Promise<any> {
-        return new Promise((resolve, reject) => {
-            let json = this.getJson(url);
-
-            if(this.checkLogin(url, params)) {
+        return this.http.get(url, {
+            params: params.params,
+            transformResponse: (response) => {
                 if (params.field) {
-                    resolve(json[params.field]);
+                    return JSON.parse(response)[params.field];
                 }
-                resolve(json);
+                return JSON.parse(response);
             }
-            reject();
         });
     }
 
     public post(url: string, data?: object): Promise<any> {
-        return new Promise((resolve, reject) => {
-            resolve(this.getJson(url));
-        });
-    }
-
-    private getJson(url: string): object {
-        switch(url) {
-        case "token": return token;
-        default: throw new Error("This URL is not recognized.");
-        }
-    }
-
-    private checkLogin(url: string, params: IGetParams) {
-        if (url === "login") {
-            if (params.params) {
-                if (params.params["username"] === "merynek" && params.params["password"] === "pass") {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+        return this.http.post(url, data);
     }
 }

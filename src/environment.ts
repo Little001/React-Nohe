@@ -4,6 +4,7 @@ import localApi from "./api/base/local.api";
 import remoteApi from "./api/base/remote.api";
 import { UserAPI } from "./api/user.api";
 import { SessionStore } from "./globalStores/session.store";
+import { AuctionAPI } from "./api/auction.api";
 
 const isProduction = false;
 
@@ -20,6 +21,7 @@ const history = createBrowserHistory();
 
 // initialize services with dependencies
 const userApi = new UserAPI(api);
+const auctionApi = new AuctionAPI(api);
 
 // initialzie stores with dependencies
 const sessionStore = new SessionStore(userApi, history, window.localStorage);
@@ -28,7 +30,7 @@ const sessionStore = new SessionStore(userApi, history, window.localStorage);
 export { api, history };
 
 // expose services
-export { userApi };
+export { userApi, auctionApi };
 
 // expose stores
 export { sessionStore };
