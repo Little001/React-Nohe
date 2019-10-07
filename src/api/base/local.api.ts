@@ -12,11 +12,7 @@ export default class LocalApi extends Api {
 
     public get(url: string, params: IGetParams): Promise<any> {
         return this.http.get(url, {
-            params: params.params,
             transformResponse: (response) => {
-                if (params.field) {
-                    return JSON.parse(response)[params.field];
-                }
                 return JSON.parse(response);
             }
         });

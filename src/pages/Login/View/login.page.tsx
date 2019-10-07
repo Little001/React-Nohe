@@ -1,21 +1,16 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { SessionStore } from "../../../globalStores/session.store";
 import { loginController as controller } from "../Controllers/login.controller";
 import { Input } from "../../../components/input/input.component";
 import { Button } from "../../../components/button/button.component";
 import { withTranslation, WithTranslation } from "react-i18next";
 
-interface ILoginPageProps {
-    sessionStore: SessionStore;
-}
-
 @inject("sessionStore")
 @observer
-class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
+class LoginPage extends React.Component<WithTranslation> {
     onFormSubmit = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
-        this.props.sessionStore.login(controller.getStore());
+        controller.login();
     }
 
     onUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {

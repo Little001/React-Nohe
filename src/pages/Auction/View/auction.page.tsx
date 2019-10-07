@@ -1,15 +1,24 @@
-import { observable } from "mobx";
+import { inject, observer } from "mobx-react";
+import * as React from "react";
+import { AuctionController } from "../Controllers/auction.controller";
+import { withTranslation, WithTranslation } from "react-i18next";
 
-export default class AuctionStore {
-    @observable public email: string;
-    @observable public username: string;
-    @observable public password: string;
-    @observable public retypePassword: string;
+@inject("sessionStore")
+@observer
+class AuctionPage extends React.Component<WithTranslation> {
+    private controller = new AuctionController();
+    render() {
+        const { t } = this.props;
 
-    constructor() {
-        this.email = "";
-        this.username = "";
-        this.password = "";
-        this.retypePassword = "";
+        return (
+            <div>
+                {t("login")}
+                {this.controller.store.items.map((item) => {
+                    return item.description;
+                })}
+            </div>
+        );
     }
 }
+
+export default withTranslation()(AuctionPage);

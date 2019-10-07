@@ -8,9 +8,10 @@ import i18n from "./locales/i18";
 import * as env from "./environment";
 
 // pages
-import { PrivateRoute } from "./routes/private.route";
 import { PublicRoute } from "./routes/public.route";
 import LoginPage from "./pages/Login/View/login.page";
+import RegistrationPage from "./pages/Registration/View/registration.page";
+import AuctionPage from "./pages/Auction/View/auction.page";
 
 // components
 import { Header } from "./components/header/header.component";
@@ -26,7 +27,8 @@ export class App extends React.Component {
                         <Switch>
                             <PublicRoute path="/" component={LoginPage} exact={true} sessionStore={env.sessionStore} />
                             <PublicRoute path="/login" component={LoginPage} exact={true} sessionStore={env.sessionStore} />
-                            <PrivateRoute path="/home" component={LoginPage} exact={true} sessionStore={env.sessionStore} />
+                            <PublicRoute path="/registration" component={RegistrationPage} exact={true} sessionStore={env.sessionStore} />
+                            <PublicRoute path="/auction" component={AuctionPage} exact={true} sessionStore={env.sessionStore} />
                         </Switch>
                     </Router>
                 </Provider>

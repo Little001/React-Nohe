@@ -1,4 +1,5 @@
 import LoginStore from "../Stores/login.store";
+import * as env from "../../../environment";
 
 class LoginController {
     private store: LoginStore;
@@ -29,6 +30,10 @@ class LoginController {
 
     public isValid(): boolean {
         return Boolean(this.getUserName()) && Boolean(this.getPassword());
+    }
+
+    public login(): void {
+        env.sessionStore.login();
     }
 }
 

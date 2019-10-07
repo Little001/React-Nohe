@@ -3,9 +3,10 @@ import * as React from "react";
 import RegistrationController from "../Controllers/registration.controller";
 import { Input } from "../../../components/input/input.component";
 import { Button } from "../../../components/button/button.component";
+import { withTranslation, WithTranslation } from "react-i18next";
 
 @observer
-export class RegistrationPage extends React.Component {
+class RegistrationPage extends React.Component<WithTranslation> {
     private controller = new RegistrationController();
 
     handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -58,3 +59,5 @@ export class RegistrationPage extends React.Component {
         );
     }
 }
+
+export default withTranslation()(RegistrationPage);

@@ -19,6 +19,6 @@ export class PublicRoute extends React.Component<IPublicRouteProps> {
             );
         }
 
-        return <Redirect to="/home" />;
+        return <Redirect to="/auction" />;
     }
 }

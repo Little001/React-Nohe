@@ -1,11 +1,14 @@
 import { observable } from "mobx";
-import AuctionItem from "./auctionItem";
+import AuctionItemStore from "./auctionItem.store";
 
-export default class AuctionList {
-    @observable public items: AuctionItem[];
+export default class AuctionListStore {
+    @observable public items: AuctionItemStore[];
 
     constructor() {
         this.items = [];
     }
 
+    public setItems(items: AuctionItemStore[]) {
+        this.items = items;
+    }
 }
