@@ -1,13 +1,18 @@
 import * as React from "react";
 import { ValidationState } from "../components";
 
+export enum TextBoxType {
+    Text = "text",
+    Password = "password"
+}
+
 interface ITextBoxProps {
     value: string | string[] | number;
+    type: TextBoxType;
     name?: string;
-    type?: string;
     disabled?: boolean;
     state?: ValidationState;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (value: string) => void;
 }
 
 export class NoheTextBox extends React.Component<ITextBoxProps> {
@@ -17,7 +22,9 @@ export class NoheTextBox extends React.Component<ITextBoxProps> {
                 value={this.props.value} 
                 type={this.props.type} 
                 name={this.props.name} 
-                onChange={this.props.onChange} 
+                onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                    this.props.onChange(event.currentTarget.value);
+                }}
                 disabled = {this.props.disabled}
             />
         );

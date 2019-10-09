@@ -5,14 +5,16 @@ interface IButtonProps {
     text: string;
     disabled?: boolean;
     state?: ValidationState;
-    onClick: (e: React.MouseEvent<HTMLElement>) => void;
+    onClick: () => void;
 }
 
 export class NoheButton extends React.Component<IButtonProps> {
     render() {
         return (
             <button
-                onClick={this.props.onClick} 
+                onClick={() => {
+                    this.props.onClick();
+                }}
                 disabled = {this.props.disabled}>
                 {this.props.text}
             </button>

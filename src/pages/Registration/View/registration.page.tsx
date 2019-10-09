@@ -1,7 +1,7 @@
 import { observer, inject } from "mobx-react";
 import * as React from "react";
 import RegistrationController from "../Controllers/registration.controller";
-import { NoheTextBox } from "../../../components/input/input.component";
+import { NoheTextBox, TextBoxType } from "../../../components/textBox/textBox.component";
 import { NoheButton } from "../../../components/button/button.component";
 import { UserAPI } from "../../../api/user.api";
 import { withTranslation, WithTranslation } from "react-i18next";
@@ -15,52 +15,55 @@ interface IRegistrationPageProps {
 class RegistrationPage extends React.Component<WithTranslation & IRegistrationPageProps> {
     private controller = new RegistrationController(this.props.userApi!);
 
-    handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        event.preventDefault();
-        this.controller.registration();
-    }
-
-    handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-        const value = event.currentTarget.value;
-
-        switch(event.currentTarget.name) {
-        case "email": 
-            this.controller.setEmail(value);
-            break;
-        case "username": 
-            this.controller.setUsername(value);
-            break;
-        case "password": 
-            this.controller.setPassword(value);
-            break;
-        case "retypePassword": 
-            this.controller.setRetypePassword(value);
-            break;
-        }
-        this.controller.setRetypePassword(event.currentTarget.value);
-    }
-
     render() {
         return (
             <div>
-                {/* TODO: add LocalizationStore */}
                 <label>
                     {"email"}
-                    <NoheTextBox value={this.controller.getEmail()} name="email" onChange={this.handleChange} />
+                    <NoheTextBox
+                        type = {TextBoxType.Text}
+                        value = {this.controller.getEmail()}
+                        onChange = {(value) => {
+                            this.controller.setEmail(value)
+                        }}
+                    />
                 </label>
                 <label>
                     {"username"}
-                    <NoheTextBox value={this.controller.getUserName()} name="username" onChange={this.handleChange} />
+                    <NoheTextBox
+                        type = {TextBoxType.Text}
+                        value = {this.controller.getUserName()}
+                        onChange = {(value) => {
+                            this.controller.setUsername(value)
+                        }}
+                    />
                 </label>
                 <label>
                     {"password"}
-                    <NoheTextBox type="password" value={this.controller.getPassword()} name="password" onChange={this.handleChange} />
+                    <NoheTextBox 
+                        type = {TextBoxType.Text}
+                        value={this.controller.getPassword()}
+                        onChange = {(value) => {
+                            this.controller.setPassword(value)
+                        }}
+                    />
                 </label>
                 <label>
                     {"retypePassword"}
-                    <NoheTextBox type="password" value={this.controller.getRetypePassword()} name="retypePassword" onChange={this.handleChange} />
+                    <NoheTextBox 
+                        type = {TextBoxType.Password}
+                        value = {this.controller.getRetypePassword()} 
+                        onChange = {(value) => {
+                            this.controller.setRetypePassword(value)
+                        }}
+                    />
                 </label>
-                <NoheButton onClick={this.handleClick} text="Registration" />
+                <NoheButton
+                    text = "Registration"
+                    onClick = {() => {
+                        this.controller.registration();
+                    }}
+                />
             </div>
         );
     }
