@@ -1,13 +1,12 @@
 import AuctionListStore from "../Stores/auctionList.store";
 import { AuctionAPI } from "../../../api/auction.api";
-import * as env from "../../../environment";
 
 export class AuctionController {
     public store: AuctionListStore;
     private api: AuctionAPI;
 
-    constructor() {
-        this.api = env.auctionApi;
+    constructor(auctionApi: AuctionAPI) {
+        this.api = auctionApi;
         this.store = new AuctionListStore();
         this.fetchData();
     }

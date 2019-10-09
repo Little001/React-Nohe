@@ -1,15 +1,13 @@
 import RegistrationStore from "../Stores/registration.store";
 import { UserAPI } from "../../../api/user.api";
-import * as env from "../../../environment";
-
 
 export default class RegistrationController {
     private store: RegistrationStore;
     private api: UserAPI;
 
-    constructor() {
+    constructor(userApi: UserAPI) {
         this.store = new RegistrationStore();
-        this.api = env.userApi;
+        this.api = userApi;
     }
 
     public setEmail(email: string): void {

@@ -8,7 +8,7 @@ interface IButtonProps {
     onClick: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export class Button extends React.Component<IButtonProps> {
+export class NoheButton extends React.Component<IButtonProps> {
     render() {
         return (
             <button

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ValidationState } from "../components";
 
-interface IInputProps {
+interface ITextBoxProps {
     value: string | string[] | number;
     name?: string;
     type?: string;
@@ -10,7 +10,7 @@ interface IInputProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export class Input extends React.Component<IInputProps> {
+export class NoheTextBox extends React.Component<ITextBoxProps> {
     render() {
         return (
             <input 

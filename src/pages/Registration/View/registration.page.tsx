@@ -1,13 +1,19 @@
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import * as React from "react";
 import RegistrationController from "../Controllers/registration.controller";
-import { Input } from "../../../components/input/input.component";
-import { Button } from "../../../components/button/button.component";
+import { NoheTextBox } from "../../../components/input/input.component";
+import { NoheButton } from "../../../components/button/button.component";
+import { UserAPI } from "../../../api/user.api";
 import { withTranslation, WithTranslation } from "react-i18next";
 
+interface IRegistrationPageProps {
+    userApi?: UserAPI;
+}
+
+@inject("userApi")
 @observer
-class RegistrationPage extends React.Component<WithTranslation> {
-    private controller = new RegistrationController();
+class RegistrationPage extends React.Component<WithTranslation & IRegistrationPageProps> {
+    private controller = new RegistrationController(this.props.userApi!);
 
     handleClick = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
@@ -40,21 +46,21 @@ class RegistrationPage extends React.Component<WithTranslation> {
                 {/* TODO: add LocalizationStore */}
                 <label>
                     {"email"}
-                    <Input value={this.controller.getEmail()} name="email" onChange={this.handleChange} />
+                    <NoheTextBox value={this.controller.getEmail()} name="email" onChange={this.handleChange} />
                 </label>
                 <label>
                     {"username"}
-                    <Input value={this.controller.getUserName()} name="username" onChange={this.handleChange} />
+                    <NoheTextBox value={this.controller.getUserName()} name="username" onChange={this.handleChange} />
                 </label>
                 <label>
                     {"password"}
-                    <Input type="password" value={this.controller.getPassword()} name="password" onChange={this.handleChange} />
+                    <NoheTextBox type="password" value={this.controller.getPassword()} name="password" onChange={this.handleChange} />
                 </label>
                 <label>
                     {"retypePassword"}
-                    <Input type="password" value={this.controller.getRetypePassword()} name="retypePassword" onChange={this.handleChange} />
+                    <NoheTextBox type="password" value={this.controller.getRetypePassword()} name="retypePassword" onChange={this.handleChange} />
                 </label>
-                <Button onClick={this.handleClick} text="Registration" />
+                <NoheButton onClick={this.handleClick} text="Registration" />
             </div>
         );
     }

@@ -1,10 +1,12 @@
 import LoginStore from "../Stores/login.store";
-import * as env from "../../../environment";
+import { SessionStore } from "../../../globalStores/session.store";
 
-class LoginController {
+export class LoginController {
     private store: LoginStore;
+    private sessionStore: SessionStore;
 
-    constructor() {
+    constructor(sessionStore: SessionStore) {
+        this.sessionStore = sessionStore;
         this.store = new LoginStore();
     }
 
@@ -33,8 +35,6 @@ class LoginController {
     }
 
     public login(): void {
-        env.sessionStore.login();
+        this.sessionStore.login();
     }
 }
-
-export const loginController = new LoginController();

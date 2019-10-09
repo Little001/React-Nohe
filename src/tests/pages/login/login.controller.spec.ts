@@ -1,42 +1,44 @@
-import { loginController } from "../../../pages/Login/Controllers/login.controller";
+import { LoginController } from "../../../pages/Login/Controllers/login.controller";
+import { CreateSessionStore } from "../../tools/helper";
 
 describe("Login Controller", () => {
+    let controller = new LoginController(CreateSessionStore());
 
     it("SET / GET Username", () => {
-        loginController.setUserName("Merynek");
-        expect(loginController.getUserName()).toBe("Merynek");
+        controller.setUserName("Merynek");
+        expect(controller.getUserName()).toBe("Merynek");
     });
 
     it("SET / GET Password", () => {
-        loginController.setPassword("Password");
-        expect(loginController.getPassword()).toBe("Password");
+        controller.setPassword("Password");
+        expect(controller.getPassword()).toBe("Password");
     });
 
     it("Login store", () => {
-        loginController.setUserName("Username");
-        loginController.setPassword("Password");
+        controller.setUserName("Username");
+        controller.setPassword("Password");
 
-        expect(loginController.getStore()).toEqual({
+        expect(controller.getStore()).toEqual({
             username: "Username",
             password: "Password"
         })
     });
 
     it("Is valid", () => {
-        loginController.setUserName("");
-        loginController.setPassword("");
-        expect(loginController.isValid()).toBeFalsy();
+        controller.setUserName("");
+        controller.setPassword("");
+        expect(controller.isValid()).toBeFalsy();
 
-        loginController.setUserName("Username");
-        loginController.setPassword("");
-        expect(loginController.isValid()).toBeFalsy();
+        controller.setUserName("Username");
+        controller.setPassword("");
+        expect(controller.isValid()).toBeFalsy();
 
-        loginController.setUserName("");
-        loginController.setPassword("Password");
-        expect(loginController.isValid()).toBeFalsy();
+        controller.setUserName("");
+        controller.setPassword("Password");
+        expect(controller.isValid()).toBeFalsy();
 
-        loginController.setUserName("Username");
-        loginController.setPassword("Password");
-        expect(loginController.isValid()).toBeTruthy();
+        controller.setUserName("Username");
+        controller.setPassword("Password");
+        expect(controller.isValid()).toBeTruthy();
     });
 });

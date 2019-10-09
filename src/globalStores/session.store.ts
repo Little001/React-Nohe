@@ -17,8 +17,16 @@ export class SessionStore {
         });
     }
 
+    public logout() {
+        this.localStorage.removeItem("token");
+        this.isLoggedIn = false;
+    }
+
     public isLogged() {
-        // TODO: read token from localStorage
+        if (Boolean(this.localStorage.getItem("token")) && !this.isLoggedIn) {
+            this.isLoggedIn = true;
+        }
+        
         return this.isLoggedIn;
     }
 }

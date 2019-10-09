@@ -1,12 +1,18 @@
-import { inject, observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import * as React from "react";
 import { AuctionController } from "../Controllers/auction.controller";
+import { AuctionAPI } from "../../../api/auction.api";
 import { withTranslation, WithTranslation } from "react-i18next";
 
-@inject("sessionStore")
+interface IAuctionPageProps {
+    auctionApi?: AuctionAPI;
+}
+
+@inject("auctionApi")
 @observer
-class AuctionPage extends React.Component<WithTranslation> {
-    private controller = new AuctionController();
+class AuctionPage extends React.Component<WithTranslation & IAuctionPageProps> {
+    private controller = new AuctionController(this.props.auctionApi!);
+
     render() {
         const { t } = this.props;
 
