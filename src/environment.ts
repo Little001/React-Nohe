@@ -3,8 +3,8 @@ import { configure } from "mobx";
 import localApi from "./api/base/local.api";
 import remoteApi from "./api/base/remote.api";
 import { UserAPI } from "./api/user.api";
-import { SessionStore } from "./globalStores/session.store";
-import { LocalStorage } from "./globalStores/local.storage";
+import { SessionStore } from "./stores/session.store";
+import { LocalStorage } from "./stores/local.storage";
 import { AuctionAPI } from "./api/auction.api";
 
 const isProduction = false;

@@ -4,7 +4,7 @@ import { LoginController } from "../Controllers/login.controller";
 import { NoheTextBox, TextBoxType } from "../../../components/textBox/textBox.component";
 import { NoheButton } from "../../../components/button/button.component";
 import { withTranslation, WithTranslation } from "react-i18next";
-import { SessionStore } from "../../../globalStores/session.store";
+import { SessionStore } from "../../../stores/session.store";
 
 interface ILoginPageProps {
     sessionStore?: SessionStore;
@@ -20,9 +20,8 @@ class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
 
         return (
             <div>
-                {t("login")}
                 <label>
-                    {"username"}
+                    {t("username")}
                     <NoheTextBox
                         type = {TextBoxType.Text}
                         value = {this.controller.getUserName()}
@@ -32,9 +31,9 @@ class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
                     />
                 </label>
                 <label>
-                    {"password"}
+                    {t("password")}
                     <NoheTextBox
-                        type = {TextBoxType.Text} 
+                        type = {TextBoxType.Password} 
                         value = {this.controller.getPassword()}
                         onChange = {(value) => {
                             this.controller.setPassword(value);
@@ -42,7 +41,7 @@ class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
                     />
                 </label>
                 <NoheButton 
-                    text="Submit"
+                    text={t("login")}
                     onClick = {() => {
                         this.controller.login();
                     }}

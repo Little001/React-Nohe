@@ -1,20 +1,21 @@
 {
-  "auction": {
-    "items": [
-      {
-        "id": 1,
-        "description": "Text"
-      },
-      {
-        "id": 2,
-        "description": "Text2"
-      },
-      {
-        "id": 3,
-        "description": "Text3"
-      }
-    ]
-  },
+  "auction": [
+    {
+      "id": 1,
+      "description": "Text 1",
+      "freight": "Náklad 1"
+    },
+    {
+      "id": 2,
+      "description": "Text2",
+      "freight": "Náklad 2"
+    },
+    {
+      "id": 3,
+      "description": "Text3",
+      "freight": "Náklad 3"
+    }
+  ],
   "token": {
     "value": "asdasdasd"
   }

@@ -1,4 +1,4 @@
-import { SessionStore } from "../../globalStores/session.store";
+import { SessionStore } from "../../stores/session.store";
 import { createBrowserHistory } from "history";
 import { CreateUserApi, CreateLocalStorate, CleanUp } from "../tools/helper";
 

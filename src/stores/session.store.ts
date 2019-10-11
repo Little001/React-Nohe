@@ -1,7 +1,7 @@
 import { History } from "history";
 import { observable } from "mobx";
 import { UserAPI } from "../api/user.api";
-import { LocalStorage, StorageItem } from "../globalStores/local.storage";
+import { LocalStorage, StorageItem } from "./local.storage";
 
 export class SessionStore {
     @observable private isLoggedIn: boolean = false;

@@ -1,7 +1,8 @@
 import { observer, inject } from "mobx-react";
 import * as React from "react";
 import i18n from "../../locales/i18";
-import { SessionStore } from "../../globalStores/session.store";
+import { SessionStore } from "../../stores/session.store";
+import { withTranslation, WithTranslation } from "react-i18next";
 
 interface IHeaderProps {
     sessionStore?: SessionStore;
@@ -9,15 +10,16 @@ interface IHeaderProps {
 
 @inject("sessionStore")
 @observer
-export class NoheHeader extends React.Component<IHeaderProps> {
+export class NoheHeader extends React.Component<IHeaderProps & WithTranslation> {
     changeLanguage = (lng: string) => {
         i18n.changeLanguage(lng);
     }
 
     LogoutButton() {
+        const { t } = this.props;
         const isLoggedIn = this.props.sessionStore!.isLogged();
         if (isLoggedIn) {
-            return <button onClick={() => this.props.sessionStore!.logout()}>Logout</button>;
+            return <button onClick={() => this.props.sessionStore!.logout()}>{t("logout")}</button>;
         }
         return <div />
     }
@@ -35,3 +37,5 @@ export class NoheHeader extends React.Component<IHeaderProps> {
         );
     }
 }
+
+export default withTranslation()(NoheHeader);

@@ -4,10 +4,7 @@ import AuctionItemStore from "../pages/Auction/Stores/auctionItem.store";
 interface IAuctionItemResponse {
     id: number;
     description: string;
-}
-
-interface IAuctionListResponse {
-    items: IAuctionItemResponse[];
+    freight: string;
 }
 
 export class AuctionAPI {
@@ -23,17 +20,23 @@ export class AuctionAPI {
         });
     }
 
-    private createAuctionList(data: IAuctionListResponse): AuctionItemStore[] {
+    public async getAuctionItem(id: number) {
+        return this.api.get("auction/" + id).then((response) => {
+            return this.createAuctionItem(response.data);
+        });
+    }
+
+    private createAuctionList(data: IAuctionItemResponse[]): AuctionItemStore[] {
         let items: AuctionItemStore[] = [];
 
-        for (let i = 0; i < data.items.length; i++) {
-            items.push(this.createAuctionItem(data.items[i]))
+        for (let i = 0; i < data.length; i++) {
+            items.push(this.createAuctionItem(data[i]))
         }
 
         return items;
     }
 
     private createAuctionItem(data: IAuctionItemResponse): AuctionItemStore {
-        return new AuctionItemStore(data.id, data.description);
+        return new AuctionItemStore(data.id, data.description, data.freight);
     }
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { Route, Redirect } from "react-router";
-import { SessionStore } from "../globalStores/session.store";
+import { SessionStore } from "../stores/session.store";
 
 interface IPrivateRouteProps {
   path: string;
@@ -12,7 +12,7 @@ interface IPrivateRouteProps {
 
 @inject("sessionStore")
 @observer
-export class PrivateRoute extends React.Component<IPrivateRouteProps> {
+export default class PrivateRoute extends React.Component<IPrivateRouteProps> {
     render() {
         if (this.props.sessionStore!.isLogged()) {
             return (

@@ -1,5 +1,12 @@
 {
   "translation": {
-      "login": "Přihlásit"
+      "login": "Přihlásit",
+      "logout": "Odhlásit",
+      "username": "Jméno",
+      "password": "Heslo",
+      "auction_id": "ID",
+      "auction_description": "Popis",
+      "auction_freight": "Náklad",
+      "add_action": "Přidat aukci"
   }
 }

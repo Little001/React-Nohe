@@ -1,5 +1,5 @@
 import { observable } from "mobx";
-import AuctionItemStore from "./auctionItem.store";
+import AuctionItemStore from "../../Stores/auctionItem.store";
 
 export default class AuctionListStore {
     @observable public items: AuctionItemStore[];

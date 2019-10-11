@@ -1,5 +1,12 @@
 {
   "translation": {
-      "login": "Login"
+      "login": "Login",
+      "logout": "Logout",
+      "username": "Username",
+      "password": "Password",
+      "auction_id": "ID",
+      "auction_description": "Description",
+      "auction_freight": "Freight",
+      "add_action": "Add auction"
   }
 }

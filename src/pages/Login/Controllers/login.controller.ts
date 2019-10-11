@@ -1,5 +1,5 @@
 import LoginStore from "../Stores/login.store";
-import { SessionStore } from "../../../globalStores/session.store";
+import { SessionStore } from "../../../stores/session.store";
 
 export class LoginController {
     private store: LoginStore;

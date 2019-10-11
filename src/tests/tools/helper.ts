@@ -1,7 +1,7 @@
 import localApi from "../../api/base/local.api";
 import { UserAPI } from "../../api/user.api";
-import { SessionStore } from "../../globalStores/session.store";
-import { LocalStorage } from "../../globalStores/local.storage";
+import { SessionStore } from "../../stores/session.store";
+import { LocalStorage } from "../../stores/local.storage";
 import { createBrowserHistory } from "history";
 import { AuctionAPI } from "../../api/auction.api";
 

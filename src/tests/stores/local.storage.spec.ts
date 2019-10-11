@@ -1,4 +1,4 @@
-import { LocalStorage, StorageItem } from "../../globalStores/local.storage";
+import { LocalStorage, StorageItem } from "../../stores/local.storage";
 import { CleanUp } from "../tools/helper";
 
 describe("Local storage", () => {
@@ -15,7 +15,7 @@ describe("Local storage", () => {
         expect(storage.getItem(StorageItem.Token)).toBe("tokenTest");
     });
 
-    it ("REMOVE / CLEAR", () => {
+    it("REMOVE / CLEAR", () => {
         storage.setItem(StorageItem.Token, "tokenTest");
         storage.removeItem(StorageItem.Token);
         expect(storage.getItem(StorageItem.Token)).toBeNull();

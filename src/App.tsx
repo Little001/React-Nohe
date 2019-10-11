@@ -7,15 +7,18 @@ import i18n from "./locales/i18";
 // environment
 import * as env from "./environment";
 
+//routes
+import PublicRoute from "./routes/public.route";
+import PrivateRoute from "./routes/private.route";
+
 // pages
-import { PublicRoute } from "./routes/public.route";
-import { PrivateRoute } from "./routes/private.route";
 import LoginPage from "./pages/Login/View/login.page";
 import RegistrationPage from "./pages/Registration/View/registration.page";
-import AuctionPage from "./pages/Auction/View/auction.page";
+import AuctionListPage from "./pages/Auction/List/View/auctionList.page";
+import AuctionDetailPage from "./pages/Auction/Detail/View/auctionDetail.page";
 
 // components
-import { NoheHeader } from "./components/header/header.component";
+import NoheHeader from "./components/header/header.component";
 
 @observer
 export class App extends React.Component {
@@ -29,7 +32,8 @@ export class App extends React.Component {
                             <PublicRoute path="/" component={LoginPage} exact={true} />
                             <PublicRoute path="/login" component={LoginPage} exact={true} />
                             <PublicRoute path="/registration" component={RegistrationPage} exact={true} />
-                            <PrivateRoute path="/auction" component={AuctionPage} exact={true} />
+                            <PrivateRoute path="/auction" component={AuctionListPage} exact={true} />
+                            <PrivateRoute path="/auction/:id" component={AuctionDetailPage} exact={true} />
                         </Switch>
                     </Router>
                 </Provider>
