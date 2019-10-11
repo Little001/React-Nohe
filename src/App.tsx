@@ -22,7 +22,7 @@ export class App extends React.Component {
     public render() {
         return (
             <I18nextProvider i18n={i18n}>
-                <Provider sessionStore={env.sessionStore} userApi={env.userApi} auctionApi={env.auctionApi} >
+                <Provider sessionStore={env.sessionStore} userApi={env.userApi} auctionApi={env.auctionApi}>
                     <NoheHeader />
                     <Router history={env.history}>
                         <Switch>

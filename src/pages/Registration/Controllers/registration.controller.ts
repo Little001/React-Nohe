@@ -1,7 +1,7 @@
 import RegistrationStore from "../Stores/registration.store";
 import { UserAPI } from "../../../api/user.api";
 
-export default class RegistrationController {
+export class RegistrationController {
     private store: RegistrationStore;
     private api: UserAPI;
 

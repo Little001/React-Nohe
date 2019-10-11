@@ -27,7 +27,7 @@ class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
                         type = {TextBoxType.Text}
                         value = {this.controller.getUserName()}
                         onChange = {(value) => {
-                            this.controller.setUserName(value);
+                            this.controller.setUsername(value);
                         }} 
                     />
                 </label>

@@ -10,7 +10,7 @@ export class LoginController {
         this.store = new LoginStore();
     }
 
-    public setUserName(username: string): void {
+    public setUsername(username: string): void {
         this.store.username = username;
     }
 

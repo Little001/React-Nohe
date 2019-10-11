@@ -1,16 +1,20 @@
 import { History } from "history";
 import { observable } from "mobx";
 import { UserAPI } from "../api/user.api";
+import { LocalStorage, StorageItem } from "../globalStores/local.storage";
 
 export class SessionStore {
     @observable private isLoggedIn: boolean = false;
+    private localStorage: LocalStorage;
 
-    constructor(public userApi: UserAPI, public browserHistory: History, public localStorage: Storage) {}
+    constructor(public userApi: UserAPI, public browserHistory: History, localStorage: LocalStorage) {
+        this.localStorage = localStorage;
+    }
 
-    public login() {
-        this.userApi.getToken().then((token) => {
+    public async login() {
+        return this.userApi.getToken().then((token) => {
             this.isLoggedIn = true;
-            this.localStorage.setItem("token", JSON.stringify(token));
+            this.localStorage.setItem(StorageItem.Token, token);
             this.browserHistory.replace("/auction");
         }).catch((error) => {
             //error
@@ -18,15 +22,19 @@ export class SessionStore {
     }
 
     public logout() {
-        this.localStorage.removeItem("token");
+        this.localStorage.removeItem(StorageItem.Token);
         this.isLoggedIn = false;
     }
 
     public isLogged() {
-        if (Boolean(this.localStorage.getItem("token")) && !this.isLoggedIn) {
+        if (Boolean(this.localStorage.getItem(StorageItem.Token)) && !this.isLoggedIn) {
             this.isLoggedIn = true;
         }
         
         return this.isLoggedIn;
+    }
+
+    public getToken(): string | null {
+        return this.localStorage.getItem(StorageItem.Token);
     }
 }

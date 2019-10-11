@@ -6,6 +6,7 @@
       "dot-location": "off",
       "quotes": ["error", "double"],
       "indent": ["error", 4],
-      "@typescript-eslint/no-angle-bracket-type-assertion": "off"
+      "@typescript-eslint/no-angle-bracket-type-assertion": "off",
+      "no-throw-literal": "error"
     }
 }

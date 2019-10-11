@@ -4,6 +4,7 @@ import localApi from "./api/base/local.api";
 import remoteApi from "./api/base/remote.api";
 import { UserAPI } from "./api/user.api";
 import { SessionStore } from "./globalStores/session.store";
+import { LocalStorage } from "./globalStores/local.storage";
 import { AuctionAPI } from "./api/auction.api";
 
 const isProduction = false;
@@ -24,7 +25,8 @@ const userApi = new UserAPI(api);
 const auctionApi = new AuctionAPI(api);
 
 // initialzie stores with dependencies
-const sessionStore = new SessionStore(userApi, history, window.localStorage);
+const localStorage = new LocalStorage(window.localStorage);
+const sessionStore = new SessionStore(userApi, history, localStorage);
 
 // expose helpers
 export { api, history };
@@ -33,4 +35,4 @@ export { api, history };
 export { userApi, auctionApi };
 
 // expose stores
-export { sessionStore };
+export { sessionStore, localStorage };

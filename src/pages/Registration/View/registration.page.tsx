@@ -1,6 +1,6 @@
 import { observer, inject } from "mobx-react";
 import * as React from "react";
-import RegistrationController from "../Controllers/registration.controller";
+import { RegistrationController } from "../Controllers/registration.controller";
 import { NoheTextBox, TextBoxType } from "../../../components/textBox/textBox.component";
 import { NoheButton } from "../../../components/button/button.component";
 import { UserAPI } from "../../../api/user.api";
