@@ -16,54 +16,43 @@ class RegistrationPage extends React.Component<WithTranslation & IRegistrationPa
     private controller = new RegistrationController(this.props.userApi!);
 
     render() {
+        const { t } = this.props;
+
         return (
             <div>
-                <label>
-                    {"email"}
-                    <NoheTextBox
-                        type = {TextBoxType.Text}
-                        value = {this.controller.getEmail()}
-                        onChange = {(value) => {
-                            this.controller.setEmail(value)
-                        }}
-                    />
-                </label>
-                <label>
-                    {"username"}
-                    <NoheTextBox
-                        type = {TextBoxType.Text}
-                        value = {this.controller.getUserName()}
-                        onChange = {(value) => {
-                            this.controller.setUsername(value)
-                        }}
-                    />
-                </label>
-                <label>
-                    {"password"}
-                    <NoheTextBox 
-                        type = {TextBoxType.Text}
-                        value={this.controller.getPassword()}
-                        onChange = {(value) => {
-                            this.controller.setPassword(value)
-                        }}
-                    />
-                </label>
-                <label>
-                    {"retypePassword"}
-                    <NoheTextBox 
-                        type = {TextBoxType.Password}
-                        value = {this.controller.getRetypePassword()} 
-                        onChange = {(value) => {
-                            this.controller.setRetypePassword(value)
-                        }}
-                    />
-                </label>
+                <NoheTextBox
+                    type = {TextBoxType.Text}
+                    placeholder = {t("email")}
+                    value = {this.controller.getEmail()}
+                    onChange = {(value) => {
+                        this.controller.setEmail(value)
+                    }} />
+                <NoheTextBox
+                    type = {TextBoxType.Text}
+                    placeholder = {t("email")}
+                    value = {this.controller.getUserName()}
+                    onChange = {(value) => {
+                        this.controller.setUsername(value)
+                    }} />
+                <NoheTextBox 
+                    type = {TextBoxType.Text}
+                    placeholder = {t("password")}
+                    value={this.controller.getPassword()}
+                    onChange = {(value) => {
+                        this.controller.setPassword(value)
+                    }} />
+                <NoheTextBox 
+                    type = {TextBoxType.Password}
+                    placeholder = {t("password")}
+                    value = {this.controller.getRetypePassword()} 
+                    onChange = {(value) => {
+                        this.controller.setRetypePassword(value)
+                    }} />
                 <NoheButton
-                    text = "Registration"
+                    text = {t("registration")}
                     onClick = {() => {
                         this.controller.registration();
-                    }}
-                />
+                    }} />
             </div>
         );
     }

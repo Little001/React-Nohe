@@ -20,32 +20,25 @@ class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
 
         return (
             <div>
-                <label>
-                    {t("username")}
-                    <NoheTextBox
-                        type = {TextBoxType.Text}
-                        value = {this.controller.getUserName()}
-                        onChange = {(value) => {
-                            this.controller.setUsername(value);
-                        }} 
-                    />
-                </label>
-                <label>
-                    {t("password")}
-                    <NoheTextBox
-                        type = {TextBoxType.Password} 
-                        value = {this.controller.getPassword()}
-                        onChange = {(value) => {
-                            this.controller.setPassword(value);
-                        }}
-                    />
-                </label>
+                <NoheTextBox
+                    type = {TextBoxType.Text}
+                    placeholder = {t("username")}
+                    value = {this.controller.getUserName()}
+                    onChange = {(value) => {
+                        this.controller.setUsername(value);
+                    }} />
+                <NoheTextBox
+                    type = {TextBoxType.Password} 
+                    placeholder = {t("password")}
+                    value = {this.controller.getPassword()}
+                    onChange = {(value) => {
+                        this.controller.setPassword(value);
+                    }} />
                 <NoheButton 
                     text={t("login")}
                     onClick = {() => {
                         this.controller.login();
-                    }}
-                />
+                    }} />
             </div>
         );
     }

@@ -1,4 +1,4 @@
-import Api from "./base/api";
+import { Api } from "./api";
 import AuctionItemStore from "../pages/Auction/Stores/auctionItem.store";
 
 interface IAuctionItemResponse {
@@ -24,6 +24,10 @@ export class AuctionAPI {
         return this.api.get("auction/" + id).then((response) => {
             return this.createAuctionItem(response.data);
         });
+    }
+
+    public async addAuctionItem(item: AuctionItemStore) {
+        return this.api.post("auction", item);
     }
 
     private createAuctionList(data: IAuctionItemResponse[]): AuctionItemStore[] {

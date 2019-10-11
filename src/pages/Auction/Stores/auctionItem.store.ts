@@ -1,7 +1,9 @@
+import { observable } from "mobx";
+
 export default class AuctionItemStore {
     public id: number;
-    public description: string;
-    public freight: string;
+    @observable public description: string;
+    @observable public freight: string;
 
     constructor(id: number, description: string, freight: string) {
         this.id = id;

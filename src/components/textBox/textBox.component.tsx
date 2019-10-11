@@ -12,13 +12,15 @@ interface ITextBoxProps {
     name?: string;
     disabled?: boolean;
     state?: ValidationState;
+    placeholder?: string;
     onChange: (value: string) => void;
 }
 
 export class NoheTextBox extends React.Component<ITextBoxProps> {
     render() {
         return (
-            <input 
+            <input
+                placeholder={this.props.placeholder}
                 value={this.props.value} 
                 type={this.props.type} 
                 name={this.props.name} 

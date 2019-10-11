@@ -7,6 +7,7 @@
       "auction_id": "ID",
       "auction_description": "Popis",
       "auction_freight": "Náklad",
-      "add_action": "Přidat aukci"
+      "add_action": "Přidat aukci",
+      "registration": "Registrace"
   }
 }

@@ -1,7 +1,6 @@
 import { createBrowserHistory } from "history";
 import { configure } from "mobx";
-import localApi from "./api/base/local.api";
-import remoteApi from "./api/base/remote.api";
+import { Api } from "./api/api";
 import { UserAPI } from "./api/user.api";
 import { SessionStore } from "./stores/session.store";
 import { LocalStorage } from "./stores/local.storage";
@@ -15,7 +14,7 @@ configure({
 });
 
 // initialize http client dependency
-const api = isProduction ? new remoteApi() : new localApi();
+const api = new Api(isProduction);
 
 // initialize browserHistory dependency
 const history = createBrowserHistory();

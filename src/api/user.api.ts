@@ -1,4 +1,4 @@
-import Api from "./base/api";
+import { Api } from "./api";
 import RegistrationStore from "../pages/Registration/Stores/registration.store";
 
 interface ITokenResponse {
