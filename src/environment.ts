@@ -8,7 +8,6 @@ import { AuctionAPI } from "./api/auction.api";
 
 const isProduction = false;
 
-// initialize mobx in FLUX mode
 configure({
     enforceActions: "never",
 });

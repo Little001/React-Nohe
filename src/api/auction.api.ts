@@ -1,5 +1,6 @@
 import { Api } from "./api";
 import AuctionItemStore from "../pages/Auction/Stores/auctionItem.store";
+import AuctionCreateStore from "../pages/Auction/Create/Stores/auctionCreate.store";
 
 interface IAuctionItemResponse {
     id: number;
@@ -26,7 +27,7 @@ export class AuctionAPI {
         });
     }
 
-    public async addAuctionItem(item: AuctionItemStore) {
+    public async createAuction(item: AuctionCreateStore) {
         return this.api.post("auction", item);
     }
 
