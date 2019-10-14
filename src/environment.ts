@@ -5,6 +5,7 @@ import { UserAPI } from "./api/user.api";
 import { SessionStore } from "./stores/session.store";
 import { LocalStorage } from "./stores/local.storage";
 import { AuctionAPI } from "./api/auction.api";
+import { AppProvider } from "./stores/app.provider";
 
 const isProduction = false;
 
@@ -26,11 +27,7 @@ const auctionApi = new AuctionAPI(api);
 const localStorage = new LocalStorage(window.localStorage);
 const sessionStore = new SessionStore(userApi, history, localStorage);
 
-// expose helpers
-export { api, history };
+const appProvider = new AppProvider(userApi, auctionApi, localStorage, sessionStore, history);
 
-// expose services
-export { userApi, auctionApi };
-
-// expose stores
-export { sessionStore, localStorage };
+// expose provider
+export { appProvider };

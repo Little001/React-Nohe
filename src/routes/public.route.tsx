@@ -1,20 +1,19 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { Route, Redirect } from "react-router";
-import { SessionStore } from "../stores/session.store";
+import { IAppProvider } from "../stores/app.provider";
 
 interface IPublicRouteProps {
   path: string;
   component: React.ComponentType<any>;
   exact: boolean;
-  sessionStore?: SessionStore;
 }
 
-@inject("sessionStore")
+@inject("appProvider")
 @observer
-export default class PublicRoute extends React.Component<IPublicRouteProps> {
+export default class PublicRoute extends React.Component<IPublicRouteProps & IAppProvider> {
     render() {
-        if (!this.props.sessionStore!.isLogged()) {
+        if (!this.props.appProvider!.sessionStore.isLogged()) {
             return (
                 <Route path={this.props.path} component={this.props.component} exact={this.props.exact} />
             );

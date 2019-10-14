@@ -4,16 +4,12 @@ import { LoginController } from "../Controllers/login.controller";
 import { NoheTextBox, TextBoxType } from "../../../components/textBox/textBox.component";
 import { NoheButton } from "../../../components/button/button.component";
 import { withTranslation, WithTranslation } from "react-i18next";
-import { SessionStore } from "../../../stores/session.store";
+import { IAppProvider } from "../../../stores/app.provider";
 
-interface ILoginPageProps {
-    sessionStore?: SessionStore;
-}
-
-@inject("sessionStore")
+@inject("appProvider")
 @observer
-class LoginPage extends React.Component<ILoginPageProps & WithTranslation> {
-    private controller = new LoginController(this.props.sessionStore!);
+class LoginPage extends React.Component<WithTranslation & IAppProvider> {
+    private controller = new LoginController(this.props.appProvider!.sessionStore);
 
     render() {
         const { t } = this.props;

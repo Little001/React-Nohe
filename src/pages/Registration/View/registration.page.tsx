@@ -3,17 +3,13 @@ import * as React from "react";
 import { RegistrationController } from "../Controllers/registration.controller";
 import { NoheTextBox, TextBoxType } from "../../../components/textBox/textBox.component";
 import { NoheButton } from "../../../components/button/button.component";
-import { UserAPI } from "../../../api/user.api";
 import { withTranslation, WithTranslation } from "react-i18next";
+import { IAppProvider } from "../../../stores/app.provider";
 
-interface IRegistrationPageProps {
-    userApi?: UserAPI;
-}
-
-@inject("userApi")
+@inject("appProvider")
 @observer
-class RegistrationPage extends React.Component<WithTranslation & IRegistrationPageProps> {
-    private controller = new RegistrationController(this.props.userApi!);
+class RegistrationPage extends React.Component<WithTranslation & IAppProvider> {
+    private controller = new RegistrationController(this.props.appProvider!.userApi);
 
     render() {
         const { t } = this.props;
@@ -35,7 +31,7 @@ class RegistrationPage extends React.Component<WithTranslation & IRegistrationPa
                         this.controller.setUsername(value)
                     }} />
                 <NoheTextBox 
-                    type = {TextBoxType.Text}
+                    type = {TextBoxType.Password}
                     placeholder = {t("password")}
                     value={this.controller.getPassword()}
                     onChange = {(value) => {

@@ -26,9 +26,9 @@ export class App extends React.Component {
     public render() {
         return (
             <I18nextProvider i18n={i18n}>
-                <Provider history={env.history} sessionStore={env.sessionStore} userApi={env.userApi} auctionApi={env.auctionApi}>
+                <Provider appProvider={env.appProvider} >
                     <NoheHeader />
-                    <Router history={env.history}>
+                    <Router history={env.appProvider.history}>
                         <Switch>
                             <PublicRoute path="/" component={LoginPage} exact={true} />
                             <PublicRoute path="/login" component={LoginPage} exact={true} />

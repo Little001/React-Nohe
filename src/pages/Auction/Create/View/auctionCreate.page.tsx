@@ -1,21 +1,15 @@
 import { observer, inject } from "mobx-react";
 import * as React from "react";
-import { AuctionAPI } from "../../../../api/auction.api";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { NoheTextBox, TextBoxType } from "../../../../components/textBox/textBox.component";
 import { NoheButton } from "../../../../components/button/button.component";
-import { History } from "history";
 import { AuctionCreateController } from "../Controllers/auctionCreate.controller";
+import { IAppProvider } from "../../../../stores/app.provider";
 
-interface IAuctionCreatePageProps {
-    auctionApi?: AuctionAPI;
-    history?: History;
-}
-
-@inject("auctionApi")
+@inject("appProvider")
 @observer
-class AuctionCreatePage extends React.Component<WithTranslation & IAuctionCreatePageProps> {
-    private controller = new AuctionCreateController(this.props.auctionApi!, this.props.history!);
+class AuctionCreatePage extends React.Component<WithTranslation & IAppProvider> {
+    private controller = new AuctionCreateController(this.props.appProvider!.auctionAPI, this.props.appProvider!.history);
 
     render() {
         const { t } = this.props;
