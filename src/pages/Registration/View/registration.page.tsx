@@ -6,10 +6,14 @@ import { NoheButton } from "../../../components/button/button.component";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { IAppProvider } from "../../../stores/app.provider";
 
+interface IRegistrationPageProps {
+    controller: RegistrationController;
+}
+
 @inject("appProvider")
 @observer
-class RegistrationPage extends React.Component<WithTranslation & IAppProvider> {
-    private controller = new RegistrationController(this.props.appProvider!.userApi);
+class RegistrationPage extends React.Component<WithTranslation & IAppProvider & IRegistrationPageProps> {
+    private controller = this.props.controller;
 
     render() {
         const { t } = this.props;

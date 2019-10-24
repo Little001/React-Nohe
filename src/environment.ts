@@ -6,6 +6,7 @@ import { SessionStore } from "./stores/session.store";
 import { LocalStorage } from "./stores/local.storage";
 import { AuctionAPI } from "./api/auction.api";
 import { AppProvider } from "./stores/app.provider";
+import { LoaderController } from "./components/loader/Controllers/loader.controller";
 
 const isProduction = false;
 
@@ -26,8 +27,9 @@ const auctionApi = new AuctionAPI(api);
 // initialzie stores with dependencies
 const localStorage = new LocalStorage(window.localStorage);
 const sessionStore = new SessionStore(userApi, history, localStorage);
+const loaderController = new LoaderController();
 
-const appProvider = new AppProvider(userApi, auctionApi, localStorage, sessionStore, history);
+const appProvider = new AppProvider(userApi, auctionApi, localStorage, sessionStore, history, loaderController);
 
 // expose provider
 export { appProvider };

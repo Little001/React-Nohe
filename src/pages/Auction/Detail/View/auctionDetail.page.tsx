@@ -3,12 +3,16 @@ import * as React from "react";
 import { AuctionDetailPageController } from "../Controllers/auctionDetailPage.controller";
 import AuctionItem from "../../../../components/auctionItem/auctionItem.component";
 import { withTranslation, WithTranslation } from "react-i18next";
-import { IAppProvider, MatchProps } from "../../../../stores/app.provider";
+import { IAppProvider } from "../../../../stores/app.provider";
+
+interface IAuctionDetailPageProps {
+    controller: AuctionDetailPageController;
+}
 
 @inject("appProvider")
 @observer
-class AuctionDetailPage extends React.Component<WithTranslation & IAppProvider & MatchProps> {
-    private controller = new AuctionDetailPageController(Number(this.props.match.params.id), this.props.appProvider!.auctionAPI);
+class AuctionDetailPage extends React.Component<WithTranslation & IAppProvider & IAuctionDetailPageProps> {
+    private controller = this.props.controller
 
     render() {
         return (

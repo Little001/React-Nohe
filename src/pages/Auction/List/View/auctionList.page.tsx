@@ -6,10 +6,14 @@ import { NoheButton } from "../../../../components/button/button.component";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { IAppProvider } from "../../../../stores/app.provider";
 
+interface IAuctionListPageProps {
+    controller: AuctionListController;
+}
+
 @inject("appProvider")
 @observer
-class AuctionListPage extends React.Component<WithTranslation & IAppProvider> {
-    private controller = new AuctionListController(this.props.appProvider!.auctionAPI);
+class AuctionListPage extends React.Component<WithTranslation & IAuctionListPageProps & IAppProvider> {
+    private controller = this.props.controller;
 
     render() {
         const { t } = this.props;

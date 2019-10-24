@@ -1,7 +1,8 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
-import { Route, Redirect } from "react-router";
 import { IAppProvider } from "../stores/app.provider";
+import { RouteController } from "./route.controller";
+import { PageController } from "../pages/page.controller";
 
 interface IPublicRouteProps {
   path: string;
@@ -12,13 +13,36 @@ interface IPublicRouteProps {
 @inject("appProvider")
 @observer
 export default class PublicRoute extends React.Component<IPublicRouteProps & IAppProvider> {
-    render() {
-        if (!this.props.appProvider!.sessionStore.isLogged()) {
-            return (
-                <Route path={this.props.path} component={this.props.component} exact={this.props.exact} />
-            );
-        }
+    private component: any;
+    private loader = this.props.appProvider!.loaderController;
 
-        return <Redirect to="/auction" />;
+    public renderPage(pageController: PageController) {
+        return (
+            <this.props.component controller={pageController} />
+        );
+    }
+
+    componentDidMount() {
+        this.loader.show();
+        const appProvider = this.props.appProvider!;
+        const controller = new RouteController(appProvider.sessionStore, appProvider.auctionAPI, appProvider.userApi, appProvider.history);
+        controller.resolveRoute(this.props.path, (pageController) => {
+            setTimeout(() => {
+                this.component = this.renderPage(pageController);
+                this.loader.hide();
+            }, 2000)
+            
+        })
+    }
+
+    render() {
+        const appProvider = this.props.appProvider!;
+        const loader = appProvider.loaderController;
+
+        return (
+            <div>
+                {loader.isLoading() ? null : this.component}
+            </div>
+        )
     }
 }

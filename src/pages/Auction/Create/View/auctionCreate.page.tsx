@@ -6,10 +6,14 @@ import { NoheButton } from "../../../../components/button/button.component";
 import { AuctionCreateController } from "../Controllers/auctionCreate.controller";
 import { IAppProvider } from "../../../../stores/app.provider";
 
+interface IAuctionCreatePageProps {
+    controller: AuctionCreateController;
+}
+
 @inject("appProvider")
 @observer
-class AuctionCreatePage extends React.Component<WithTranslation & IAppProvider> {
-    private controller = new AuctionCreateController(this.props.appProvider!.auctionAPI, this.props.appProvider!.history);
+class AuctionCreatePage extends React.Component<WithTranslation & IAppProvider & IAuctionCreatePageProps> {
+    private controller = this.props.controller;
 
     render() {
         const { t } = this.props;

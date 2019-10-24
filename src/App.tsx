@@ -20,6 +20,7 @@ import AuctionCreatePage from "./pages/Auction/Create/View/auctionCreate.page";
 
 // components
 import NoheHeader from "./components/header/header.component";
+import NoheLoader from "./components/loader/View/loader";
 
 @observer
 export class App extends React.Component {
@@ -27,6 +28,7 @@ export class App extends React.Component {
         return (
             <I18nextProvider i18n={i18n}>
                 <Provider appProvider={env.appProvider} >
+                    <NoheLoader />
                     <NoheHeader />
                     <Router history={env.appProvider.history}>
                         <Switch>

@@ -6,10 +6,14 @@ import { NoheButton } from "../../../components/button/button.component";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { IAppProvider } from "../../../stores/app.provider";
 
+interface ILoginPageProps {
+    controller: LoginController;
+}
+
 @inject("appProvider")
 @observer
-class LoginPage extends React.Component<WithTranslation & IAppProvider> {
-    private controller = new LoginController(this.props.appProvider!.sessionStore);
+class LoginPage extends React.Component<WithTranslation & IAppProvider & ILoginPageProps> {
+    private controller = this.props.controller;
 
     render() {
         const { t } = this.props;
