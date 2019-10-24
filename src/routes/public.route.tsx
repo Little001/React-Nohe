@@ -1,5 +1,6 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
+import { Route, Redirect } from "react-router";
 import { IAppProvider } from "../stores/app.provider";
 import { RouteController } from "./route.controller";
 import { PageController } from "../pages/page.controller";
@@ -10,39 +11,41 @@ interface IPublicRouteProps {
   exact: boolean;
 }
 
+interface IState {
+    component: any
+}
+
 @inject("appProvider")
 @observer
-export default class PublicRoute extends React.Component<IPublicRouteProps & IAppProvider> {
-    private component: any;
-    private loader = this.props.appProvider!.loaderController;
-
-    public renderPage(pageController: PageController) {
+export default class PublicRoute extends React.Component<IPublicRouteProps & IAppProvider, IState> {
+    constructor(props: IPublicRouteProps) {
+        super(props);
+        this.state = {
+            component: null
+        }
+    }
+    renderPage(pageController: PageController) {
         return (
             <this.props.component controller={pageController} />
         );
     }
-
-    componentDidMount() {
-        this.loader.show();
-        const appProvider = this.props.appProvider!;
-        const controller = new RouteController(appProvider.sessionStore, appProvider.auctionAPI, appProvider.userApi, appProvider.history);
-        controller.resolveRoute(this.props.path, (pageController) => {
-            setTimeout(() => {
-                this.component = this.renderPage(pageController);
-                this.loader.hide();
-            }, 2000)
-            
-        })
-    }
-
+    
     render() {
-        const appProvider = this.props.appProvider!;
-        const loader = appProvider.loaderController;
+        const controller = new RouteController(this.props.appProvider!, this.props.component);
+        controller.setPath(this.props.path, this.props.component);
+        if (!this.props.appProvider!.sessionStore.isLogged()) {
 
-        return (
-            <div>
-                {loader.isLoading() ? null : this.component}
-            </div>
-        )
+            return (
+                <Route
+                    path={this.props.path}
+                    exact={this.props.exact}
+                    render={() => (
+                        this.state.component
+                    )}
+                />
+            )
+        }
+
+        return <Redirect to="/auction" />;
     }
 }

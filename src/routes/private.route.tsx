@@ -3,6 +3,7 @@ import { observer, inject } from "mobx-react";
 import { Route, Redirect } from "react-router";
 import { IAppProvider } from "../stores/app.provider";
 import { RouteController } from "./route.controller";
+import { AsyncComponent } from "./AsyncComponent";
 
 interface IPrivateRouteProps {
   path: string;
@@ -10,25 +11,32 @@ interface IPrivateRouteProps {
   exact: boolean;
 }
 
+interface IState {
+    component: any
+}
+
 @inject("appProvider")
 @observer
-export default class PrivateRoute extends React.Component<IPrivateRouteProps & IAppProvider> {
+export default class PrivateRoute extends React.Component<IPrivateRouteProps & IAppProvider, IState> {
+    private controller = new RouteController(this.props.appProvider!, this.props.component);
+    
+    
     render() {
-        const appProvider = this.props.appProvider!;
-        const controller = new RouteController(appProvider.sessionStore, appProvider.auctionAPI, appProvider.userApi, appProvider.history);
-        
         if (this.props.appProvider!.sessionStore.isLogged()) {
-            controller.resolveRoute(this.props.path, (pageController) => {
-                return (
-                    <Route 
-                        path={this.props.path}
-                        component={() => {
-                            return <this.props.component controller={pageController} />
-                        }}
-                        exact={this.props.exact} 
-                    />
-                )
-            })
+            this.controller.setPath(this.props.path, this.props.component);
+            return (
+                <Route
+                    path={this.props.path}
+                    exact={this.props.exact}
+                    render={() => (
+                        <AsyncComponent 
+                            path={this.props.path} 
+                            component={this.props.component} 
+                            controller={this.controller}
+                        />
+                    )}
+                />
+            )
         }
 
         return <Redirect to="/login" />;

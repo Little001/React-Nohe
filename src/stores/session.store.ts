@@ -24,6 +24,7 @@ export class SessionStore {
     public logout() {
         this.localStorage.removeItem(StorageItem.Token);
         this.isLoggedIn = false;
+        this.browserHistory.replace("/login");
     }
 
     public isLogged() {
