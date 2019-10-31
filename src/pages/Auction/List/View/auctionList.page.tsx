@@ -14,6 +14,7 @@ interface IAuctionListPageProps {
 @observer
 class AuctionListPage extends React.Component<WithTranslation & IAuctionListPageProps & IAppProvider> {
     private controller = this.props.controller;
+    
 
     render() {
         const { t } = this.props;
@@ -21,7 +22,7 @@ class AuctionListPage extends React.Component<WithTranslation & IAuctionListPage
         return (
             <div>
                 {this.controller.store.items.map((item) => 
-                    <AuctionItem store={item} />
+                    <AuctionItem store={item} key={item.id} />
                 )}
                 <NoheButton
                     text = {t("add_action")}

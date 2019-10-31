@@ -1,13 +1,15 @@
 import { AuctionAPI } from "../../../../api/auction.api";
 import AuctionCreateStore from "../Stores/auctionCreate.store";
 import { History } from "history";
+import { PageController } from "../../../page.controller";
 
-export class AuctionCreateController {
+export class AuctionCreateController extends PageController {
     private store: AuctionCreateStore;
     private history: History;
     private api: AuctionAPI;
 
     constructor(auctionApi: AuctionAPI, history: History) {
+        super();
         this.api = auctionApi;
         this.history = history;
         this.store = new AuctionCreateStore();

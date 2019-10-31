@@ -1,11 +1,13 @@
 import LoginStore from "../Stores/login.store";
 import { SessionStore } from "../../../stores/session.store";
+import { PageController } from "../../page.controller";
 
-export class LoginController {
+export class LoginController extends PageController {
     private store: LoginStore;
     private sessionStore: SessionStore;
 
     constructor(sessionStore: SessionStore) {
+        super();
         this.sessionStore = sessionStore;
         this.store = new LoginStore();
     }

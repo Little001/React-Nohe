@@ -1,46 +1,53 @@
-import { PureComponent } from "react";
-import { observer, inject } from "mobx-react";
 import React from "react";
 import { RouteController } from "./route.controller";
+import { observer } from "mobx-react";
 import { PageController } from "../pages/page.controller";
+import { IComputedMatch } from "../stores/app.provider";
+
 
 interface IProps {
+    routeController: RouteController;
     path: string;
-    controller: RouteController;
     component: React.ComponentType<any>;
+    match?: IComputedMatch;
 }
 
 interface IState {
-    path: string;
-    Component: any;
+    controller: PageController|null;
 }
 
-@inject("appProvider")
 @observer
-export class AsyncComponent extends PureComponent<IProps, IState> {
-    constructor(props: any) {
+export class AsyncRoute extends React.PureComponent<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
         this.state = {
-            path: this.props.path,
-            Component: null
+            controller: null
         };
     }
 
-    renderPage(controller: PageController|null) {
-        if (controller === null) {
-            return (
-                null
-            );
+    componentDidMount() {
+        try {
+            let id = this.props.match ? this.props.match.params.id : "";
+            this.props.routeController.getPageController(this.props.path, id).then((controller: PageController) => {
+                this.setState({
+                    controller: controller
+                })
+            })
+        } catch(err) {
+            // error handling
         }
-        return (
-            <this.props.controller.component controller={controller} />
-        )
     }
-  
+
     render() {
-        debugger;
-        return (
-            this.renderPage(this.props.controller.getController())
-        );
+        const { controller } = this.state;
+
+        if (controller) {
+            return (
+                <this.props.component controller={controller} />
+            )
+        }
+
+        return null;
     }
+
 }

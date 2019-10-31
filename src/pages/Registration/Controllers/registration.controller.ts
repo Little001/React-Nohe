@@ -1,11 +1,13 @@
 import RegistrationStore from "../Stores/registration.store";
 import { UserAPI } from "../../../api/user.api";
+import { PageController } from "../../page.controller";
 
-export class RegistrationController {
+export class RegistrationController extends PageController {
     private store: RegistrationStore;
     private api: UserAPI;
 
     constructor(userApi: UserAPI) {
+        super();
         this.store = new RegistrationStore();
         this.api = userApi;
     }

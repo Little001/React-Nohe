@@ -22,6 +22,7 @@ import AuctionCreatePage from "./pages/Auction/Create/View/auctionCreate.page";
 import NoheHeader from "./components/header/header.component";
 import NoheLoader from "./components/loader/View/loader";
 
+
 @observer
 export class App extends React.Component {
     public render() {

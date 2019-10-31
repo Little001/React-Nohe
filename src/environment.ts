@@ -7,6 +7,7 @@ import { LocalStorage } from "./stores/local.storage";
 import { AuctionAPI } from "./api/auction.api";
 import { AppProvider } from "./stores/app.provider";
 import { LoaderController } from "./components/loader/Controllers/loader.controller";
+import { RouteController } from "./routes/route.controller";
 
 const isProduction = false;
 
@@ -28,8 +29,9 @@ const auctionApi = new AuctionAPI(api);
 const localStorage = new LocalStorage(window.localStorage);
 const sessionStore = new SessionStore(userApi, history, localStorage);
 const loaderController = new LoaderController();
+const routeController = new RouteController(auctionApi,userApi, sessionStore, history, loaderController);
 
-const appProvider = new AppProvider(userApi, auctionApi, localStorage, sessionStore, history, loaderController);
+const appProvider = new AppProvider(userApi, auctionApi, localStorage, sessionStore, history, loaderController, routeController);
 
 // expose provider
 export { appProvider };

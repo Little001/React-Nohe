@@ -1,9 +1,8 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { Route, Redirect } from "react-router";
-import { IAppProvider } from "../stores/app.provider";
-import { RouteController } from "./route.controller";
-import { AsyncComponent } from "./AsyncComponent";
+import { IAppProvider, IMatchParams } from "../stores/app.provider";
+import { AsyncRoute } from "./asyncComponent";
 
 interface IPrivateRouteProps {
   path: string;
@@ -11,28 +10,22 @@ interface IPrivateRouteProps {
   exact: boolean;
 }
 
-interface IState {
-    component: any
-}
-
 @inject("appProvider")
 @observer
-export default class PrivateRoute extends React.Component<IPrivateRouteProps & IAppProvider, IState> {
-    private controller = new RouteController(this.props.appProvider!, this.props.component);
-    
-    
+export default class PrivateRoute extends React.Component<IPrivateRouteProps & IAppProvider & IMatchParams> {
     render() {
         if (this.props.appProvider!.sessionStore.isLogged()) {
-            this.controller.setPath(this.props.path, this.props.component);
             return (
                 <Route
+                    key={this.props.path}
                     path={this.props.path}
                     exact={this.props.exact}
-                    render={() => (
-                        <AsyncComponent 
-                            path={this.props.path} 
+                    component={() => (
+                        <AsyncRoute
+                            match={this.props.computedMatch}
+                            path={this.props.path}
+                            routeController={this.props.appProvider!.routeController} 
                             component={this.props.component} 
-                            controller={this.controller}
                         />
                     )}
                 />

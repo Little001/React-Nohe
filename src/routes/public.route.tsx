@@ -1,9 +1,8 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { Route, Redirect } from "react-router";
-import { IAppProvider } from "../stores/app.provider";
-import { RouteController } from "./route.controller";
-import { PageController } from "../pages/page.controller";
+import { IAppProvider, IMatchParams } from "../stores/app.provider";
+import { AsyncRoute } from "./asyncComponent";
 
 interface IPublicRouteProps {
   path: string;
@@ -11,41 +10,27 @@ interface IPublicRouteProps {
   exact: boolean;
 }
 
-interface IState {
-    component: any
-}
-
 @inject("appProvider")
 @observer
-export default class PublicRoute extends React.Component<IPublicRouteProps & IAppProvider, IState> {
-    constructor(props: IPublicRouteProps) {
-        super(props);
-        this.state = {
-            component: null
-        }
-    }
-    renderPage(pageController: PageController) {
-        return (
-            <this.props.component controller={pageController} />
-        );
-    }
-    
+export default class PublicRoute extends React.Component<IPublicRouteProps & IAppProvider & IMatchParams> {
     render() {
-        const controller = new RouteController(this.props.appProvider!, this.props.component);
-        controller.setPath(this.props.path, this.props.component);
         if (!this.props.appProvider!.sessionStore.isLogged()) {
-
             return (
                 <Route
+                    key={this.props.path}
                     path={this.props.path}
                     exact={this.props.exact}
-                    render={() => (
-                        this.state.component
+                    component={() => (
+                        <AsyncRoute
+                            match={this.props.computedMatch}
+                            path={this.props.path}
+                            routeController={this.props.appProvider!.routeController} 
+                            component={this.props.component} 
+                        />
                     )}
                 />
             )
         }
-
         return <Redirect to="/auction" />;
     }
 }
